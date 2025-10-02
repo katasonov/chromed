@@ -44,7 +44,7 @@ Pull requests are welcome! If you’d like to:
 * Localize the UI
   …feel free to fork and send a PR.
 
-Please see `CONTRIBUTING.md` (coming soon) for contribution guidelines.
+Please see [`CONTRIBUTING.md`](./CONTRIBUTING.md) for contribution guidelines.
 
 ---
 
