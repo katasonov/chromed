@@ -795,14 +795,14 @@ class GDriveWindowsStyleDialog {
     }
     
     showNewFolderModal() {
-        this.elements.newFolderModal.style.display = 'flex';
+        this.elements.newFolderModal.classList.add('show');
         this.elements.newFolderName.value = 'New folder';
         this.elements.newFolderName.focus();
         this.elements.newFolderName.select();
     }
-    
+
     hideNewFolderModal() {
-        this.elements.newFolderModal.style.display = 'none';
+        this.elements.newFolderModal.classList.remove('show');
     }
     
     async createNewFolder() {
