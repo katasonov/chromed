@@ -41,7 +41,7 @@ class GDriveWindowsStyleDialog {
                                     <span class="icon">↻</span>
                                 </button>
                                 <button id="new-folder" class="nav-button" title="Create new folder">
-                                    <span class="icon"></span>
+                                    <span class="icon">+</span>
                                 </button>
                             </div>
                         </div>
