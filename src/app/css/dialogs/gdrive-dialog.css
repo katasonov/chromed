@@ -52,7 +52,8 @@
     margin-right: 8px;
 }
 
-.gdrive-dialog .close-button {
+.gdrive-dialog .close-button,
+#new-folder-modal .close-button {
     background: none;
     border: none;
     font-size: 18px;
@@ -65,7 +66,8 @@
     border-radius: 4px;
 }
 
-.gdrive-dialog .close-button:hover {
+.gdrive-dialog .close-button:hover,
+#new-folder-modal .close-button:hover {
     background-color: var(--button-hover);
 }
 
@@ -332,7 +334,8 @@
     width: 12px; /* Width of the space between buttons */
 }
 
-.gdrive-dialog button {
+.gdrive-dialog button,
+#new-folder-modal button {
     padding: 6px 12px;
     border: 1px solid var(--border-color);
     border-radius: 2px;
@@ -341,39 +344,45 @@
     background-color: white;
 }
 
-.gdrive-dialog .primary-button {
+.gdrive-dialog .primary-button,
+#new-folder-modal .primary-button {
     background-color: var(--highlight-color);
     border-color: var(--highlight-color);
     color: white;
 }
 
-.gdrive-dialog .primary-button:hover {
+.gdrive-dialog .primary-button:hover,
+#new-folder-modal .primary-button:hover {
     opacity: 0.9;
 }
 
-.gdrive-dialog .secondary-button:hover {
+.gdrive-dialog .secondary-button:hover,
+#new-folder-modal .secondary-button:hover {
     background-color: var(--button-hover);
 }
 
 /* Modal for creating new folder */
-.gdrive-dialog .modal {
+.gdrive-dialog .modal,
+#new-folder-modal {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, 0.4);
-    z-index: 1000;
-}
-
-.gdrive-dialog .modal.show {
-    display: flex;
+    z-index: 10000;
     justify-content: center;
     align-items: center;
 }
 
-.gdrive-dialog .modal-content {
+.gdrive-dialog .modal.show,
+#new-folder-modal.show {
+    display: flex;
+}
+
+.gdrive-dialog .modal-content,
+#new-folder-modal .modal-content {
     background-color: white;
     width: 350px;
     border-radius: 4px;
@@ -381,7 +390,8 @@
     overflow: hidden;
 }
 
-.gdrive-dialog .modal-header {
+.gdrive-dialog .modal-header,
+#new-folder-modal .modal-header {
     padding: 10px 15px;
     display: flex;
     justify-content: space-between;
@@ -390,15 +400,18 @@
     border-bottom: 1px solid var(--border-color);
 }
 
-.gdrive-dialog .modal-title {
+.gdrive-dialog .modal-title,
+#new-folder-modal .modal-title {
     font-weight: 600;
 }
 
-.gdrive-dialog .modal-body {
+.gdrive-dialog .modal-body,
+#new-folder-modal .modal-body {
     padding: 15px;
 }
 
-.gdrive-dialog .modal-body input {
+.gdrive-dialog .modal-body input,
+#new-folder-modal .modal-body input {
     width: 100%;
     padding: 6px 8px;
     border: 1px solid var(--border-color);
@@ -406,7 +419,8 @@
     margin-top: 8px;
 }
 
-.gdrive-dialog .modal-footer {
+.gdrive-dialog .modal-footer,
+#new-folder-modal .modal-footer {
     padding: 10px 15px;
     display: flex;
     justify-content: flex-end;
@@ -415,7 +429,7 @@
 }
 
 /* Hide the modal by default */
-.gdrive-dialog #new-folder-modal {
+#new-folder-modal {
     display: none;
 }
 
