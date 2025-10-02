@@ -18,13 +18,12 @@ class HelpMenu extends ContextMenuDropdown {
         // Construct menu items
         let chromeEdHomeItem, redditChannelItem, xChannelItem, shortcutsSheetItem, githubItem;
         const menuItems = [
+            (shortcutsSheetItem = new MenuItem('shortcuts-sheet', 'Keyboard Shortcuts', function() {})),
+            new MenuItemSeparator(),
             (chromeEdHomeItem = new MenuItem('chromeed-home', 'ChromeEd Home', function() {})),
-            new MenuItemSeparator(),
-            (redditChannelItem = new MenuItem('reddit-channel', 'Reddit Channel', function() {})),            
-            (xChannelItem = new MenuItem('x-channel', 'X.com channel', function() {})),
-            (githubItem = new MenuItem('github', 'GitHub', function() {})),
-            new MenuItemSeparator(),
-            (shortcutsSheetItem = new MenuItem('shortcuts-sheet', 'Shortcuts sheet', function() {}))
+            (redditChannelItem = new MenuItem('reddit-channel', 'Reddit Community', function() {})),            
+            (xChannelItem = new MenuItem('x-channel', 'X (Twitter)', function() {})),
+            (githubItem = new MenuItem('github', 'GitHub · Report Issues', function() {})),
         ];
         super({id, items: menuItems, onHide, onLeftArrowPressed, onRightArrowPressed});
         this.editor = editor;
@@ -37,7 +36,7 @@ class HelpMenu extends ContextMenuDropdown {
         chromeEdHomeItem.action = wrapHandler(() => window.open('https://chrome.google.com/webstore/detail/gjpealfnbgbllonnhhcgmfbccedcjena'), this);
         redditChannelItem.action = wrapHandler(() => window.open('https://www.reddit.com/r/chromedapp'), this);
         xChannelItem.action = wrapHandler(() => window.open('https://x.com/chromedapp'), this);
-        githubItem.action = wrapHandler(() => window.open('https://github.com/katasonov/chromed'), this);
+        githubItem.action = wrapHandler(() => window.open('https://github.com/katasonov/chromed/issues'), this);
         shortcutsSheetItem.action = wrapHandler(() => window.open('shortcuts.html'), this);
     }
 
