@@ -1,0 +1,411 @@
+/* Tab icon (local/gdrive) */
+.tab-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 2px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    opacity: 0.85;
+    margin-top: 2px;
+}
+.tab-icon.gdrive {
+    display: inline-block;
+    background-image: url('../assets/icons/google-drive.svg');
+}
+.tab-icon.local {
+    display: inline-block;
+    background-image: url('../assets/icons/local-drive.svg');
+}
+.tab-icon:not(.gdrive):not(.local) {
+    display: none;
+}
+/* Google Drive icon for tabs */
+.gdrive-tab-icon {
+    display: inline-block;
+    margin-right: 2px;
+    vertical-align: middle;
+    opacity: 0.85;
+}
+/* Highlight for current line in CodeMirror */
+.cm-current-line {
+    background: #e5f3ff !important;
+}
+/* Menu System CSS - Enhanced styling for the new menu architecture */
+
+/* Menu Bar */
+.menu-bar {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    font-size: 11px;
+    flex-shrink: 0;
+    min-height: 24px;
+    position: relative;
+    z-index: 1000;
+}
+
+/* Menu Items */
+.menu-item {
+    padding: 4px 8px;
+    cursor: default;
+    position: relative;
+    user-select: none;
+    border-radius: 2px;
+    transition: background-color 0.15s ease;
+}
+
+/* Override CodeMirror line number padding */
+.CodeMirror-linenumber {
+    padding: 0 8px 0 5px !important;
+}
+
+
+.menu-item:hover,
+.menu-item.open {
+    background-color: #e5f3ff;
+}
+
+/* Dropdown */
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    cursor: default;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    min-width: 180px;
+    z-index: 10000;
+    overflow: hidden;
+    animation: dropdownFadeIn 0.15s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown.show {
+    display: block;
+}
+
+
+/* Dropdown Items */
+/* Add more left padding for context menu and all dropdowns */
+.dropdown-item {
+    padding: 4px 4px 4px 4px;
+    cursor: default;
+    font-size: 11px;
+    color: #333;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.1s ease;
+    position: relative;
+}
+
+/* Style for selected language items */
+.dropdown-item.selected-language::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+    font-weight: bold;
+    color: black;
+}
+
+.dropdown-item:focus {
+    outline: none;
+    background-color: #e5f3ff;
+}
+.dropdown-item.selected {
+    background-color: #e5f3ff;
+}
+
+.dropdown-item:active {
+    background-color: #cce7ff;
+}
+
+.dropdown-item.disabled {
+    color: #999;
+    cursor: default;
+    pointer-events: none;
+}
+
+.dropdown-item.disabled:hover {
+    background-color: transparent;
+}
+
+/* Submenu styling */
+.submenu-item {
+    position: relative;
+}
+
+.submenu-item .arrow {
+    margin-left: 8px;
+    font-size: 10px;
+}
+
+.submenu {
+    display: none;
+    position: fixed; /* Changed from absolute to fixed for correct positioning */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    min-width: 250px; /* Wider for language names */
+    max-height: 500px; /* Limit height */
+    overflow-y: auto; /* Add scrolling */
+    z-index: 10001;
+    animation: submenuFadeIn 0.15s ease-out;
+    /* Add a margin to create a buffer zone for easier mouse movement */
+    margin-left: -10px;
+    padding-left: 10px;
+}
+
+@keyframes submenuFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.submenu.show {
+    display: block;
+}
+
+/* Keyboard Shortcuts */
+.dropdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-item .menu-item-text {
+    flex: 1;
+}
+
+.dropdown-item .shortcut {
+    color: #666;
+    font-size: 10px;
+    margin-left: auto;
+    padding-left: 20px;
+    opacity: 0.8;
+}
+
+.dropdown-item.disabled .shortcut {
+    color: #ccc;
+}
+
+/* Separator */
+.dropdown hr {
+    margin: 4px 0;
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    background: none;
+}
+
+/* Focused menu item (keyboard navigation) */
+.menu-item:focus {
+    outline: 1px solid #316AC5;
+    outline-offset: -1px;
+    background-color: #e5f3ff;
+}
+
+/* .dropdown-item:focus {
+    outline: none;
+    background-color: #e5f3ff;
+} */
+
+/* Menu item states */
+.menu-item.active {
+    background-color: #cce7ff;
+    border: 1px solid #316AC5;
+    padding: 3px 7px; /* Adjust for border */
+}
+
+/* Enhanced visual feedback */
+.dropdown-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: transparent;
+    transition: background-color 0.15s ease;
+}
+
+.dropdown-item.selected::before {
+    background-color: #316AC5;
+}
+
+
+/* Icons in menu items (if you want to add them later) */
+.dropdown-item .icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.dropdown-item.disabled .icon {
+    opacity: 0.3;
+}
+
+/* Submenu support (for future expansion) */
+.dropdown-item.has-submenu::after {
+    content: '▶';
+    margin-left: auto;
+    font-size: 8px;
+    color: #666;
+}
+
+.dropdown-item.disabled.has-submenu::after {
+    color: #ccc;
+}
+
+
+/* Dark theme support (for future) */
+@media (prefers-color-scheme: dark) {
+    .menu-bar {
+        background-color: #2d2d2d;
+        border-bottom-color: #404040;
+        color: #e0e0e0;
+    }
+    
+    .menu-item:hover {
+        background-color: #404040;
+    }
+    
+    .dropdown {
+        background-color: #2d2d2d;
+        border-color: #404040;
+        color: #e0e0e0;
+    }
+    
+    .dropdown-item {
+        color: #e0e0e0;
+    }
+    
+    .dropdown-item:hover {
+        background-color: #404040;
+    }
+    
+    .dropdown-item.disabled {
+        color: #666;
+    }
+    
+    .dropdown hr {
+        border-top-color: #404040;
+    }
+    
+    .dropdown-item .shortcut {
+        color: #999;
+    }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .menu-bar {
+        font-size: 12px;
+        height: 28px;
+    }
+    
+    .menu-item {
+        padding: 6px 10px;
+    }
+    
+    .dropdown {
+        min-width: 200px;
+    }
+    
+    .dropdown-item {
+        /* padding: 10px 16px; */
+        font-size: 12px;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .menu-bar {
+        border-bottom: 2px solid #000;
+    }
+    
+    .dropdown {
+        border: 2px solid #000;
+    }
+    
+    .dropdown-item:hover {
+        background-color: #000;
+        color: #fff;
+    }
+    
+    .menu-item:hover {
+        background-color: #000;
+        color: #fff;
+    }
+}
+
+/* Animation for menu state changes */
+.menu-item.opening {
+    background-color: #e5f3ff;
+}
+
+.menu-item.closing {
+    background-color: transparent;
+}
+
+/* Focus trap for accessibility */
+.dropdown:focus-within {
+    /* outline: 2px solid #316AC5;
+    outline-offset: -2px; */
+}
+
+/* Loading state for dynamic menu items */
+.dropdown-item.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.dropdown-item.loading::after {
+    content: '...';
+    margin-left: auto;
+}
+
+/* Error state for menu items */
+.dropdown-item.error {
+    color: #d32f2f;
+}
+
+.dropdown-item.error:hover {
+    background-color: #ffebee;
+}
+
+/* Success state for menu items */
+.dropdown-item.success {
+    color: #388e3c;
+}
+
+.dropdown-item.success:hover {
+    background-color: #e8f5e8;
+}

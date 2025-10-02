@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "ChromEd - Multitab Text & Code Editor with Google Drive",
+  "version": "0.1.0",
+  "description": "A fast, tabbed editor for text and code with Google Drive sync.",
+  "permissions": [
+    "storage",
+    "identity",
+    "tabs"
+   ],
+  "host_permissions": [
+    "https://www.googleapis.com/*"
+  ],
+  "oauth2": {
+    "client_id": "472481270612-epdjriuv95vcjmcurbbq9i40gvinjf6f.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/drive.file",
+      "https://www.googleapis.com/auth/drive.metadata.readonly"
+    ]
+  },
+  "action": {
+    "default_title": "ChromEd — Multitab Text & Code Editor (Google Drive)",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

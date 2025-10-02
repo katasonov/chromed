@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="38" height="36">
+  <!-- Windows-style folder with original Google Drive color -->
+  <path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z" fill="#4285f4" stroke="#3367d6" stroke-width="0.8"/>
+  <!-- Enhanced plus sign in the center of the folder with contrasting color -->
+  <path d="M12 10v6M9 13h6" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

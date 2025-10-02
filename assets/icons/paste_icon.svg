@@ -1,0 +1,17 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="48 16 160 208">
+  <!-- Clipboard background -->
+  <rect x="48" y="32" width="160" height="192" rx="16" ry="16"
+        fill="#FDF0D5" stroke="#005F99" stroke-width="10"/>
+
+  <!-- Clipboard clip -->
+  <rect x="96" y="16" width="64" height="32" rx="8" ry="8"
+        fill="#ffffff" stroke="#005F99" stroke-width="6"/>
+
+  <!-- Overlapping file icon -->
+  <rect x="96" y="104" width="64" height="88" rx="4" ry="4"
+        fill="#ffffff" stroke="#005F99" stroke-width="6"/>
+
+  <!-- Folded corner -->
+  <polygon points="144,104 160,104 160,120" fill="#FDF0D5" stroke="#005F99" stroke-width="4"/>
+</svg>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="32 32 192 192" xmlns="http://www.w3.org/2000/svg">
+<!-- Document background -->
+<rect fill="#FDF0D5" height="192" rx="16" ry="16" stroke="#005F99" stroke-width="10" width="192" x="32" y="32"/>
+<!-- Letter 'b' -->
+<text fill="#1976D2" font-family="Arial" font-size="80" font-weight="bold" x="75" y="130">b</text>
+<!-- Letter 'a' -->
+<text fill="#1976D2" font-family="Arial" font-size="80" font-weight="bold" x="130" y="180">a</text>
+<!-- Stylized arrow (path resembling uploaded image) -->
+<g transform="scale(0.6) rotate(130 128 128) translate(-100 -130)"><path d="M160 160            C90 160, 90 96, 160 96" fill="none" stroke="#43A047" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><polyline fill="none" points="140,80 160,96 140,112" stroke="#43A047" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></g></svg>

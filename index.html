@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChromEd — Multitab Text & Code Editor (Google Drive)</title>
+    <link rel="stylesheet" href="css/codemirror.min.css">
+    <link rel="stylesheet" href="css/theme/default.min.css">
+		<link rel="stylesheet" href="css/menu-system.css">
+		<link rel="stylesheet" href="css/dialogs/gdrive-dialog.css">
+    <link rel="stylesheet" href="css/search-dialog-custom.css">
+	<link rel="stylesheet" href="css/tab-bar-nav.css">
+    <link rel="stylesheet" href="css/tab_switcher_dialog.css">
+
+    <!-- TemporaryFile Save Dialog CSS -->
+    <link rel="stylesheet" href="css/dialogs/temporaryfile-save-dialog.css">
+		
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Toolbar */
+        .toolbar {
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ccc;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            padding: 2px 4px;
+            flex-shrink: 0;
+            min-height: 28px;
+        }
+
+        .toolbar-button {
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            margin: 0 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 2px;
+        }
+
+        .toolbar-button:hover {
+            background-color: #e5f3ff;
+            border: 1px solid #316AC5;
+        }
+
+        /* Tab Bar */
+        .tab-bar {
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ccc;
+            height: 24px;
+            display: flex;
+            align-items: stretch;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            flex-shrink: 0;
+            min-height: 24px;
+            position: relative;
+            padding-right: 80px; /* Reserve space for nav buttons */
+        }
+
+        .tab-bar-nav {
+            position: fixed;
+            right: 0;
+            top: 52px; /* Height of toolbar + border, adjust if needed */
+            height: 24px;
+            background: #f0f0f0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            padding-right: 2px;
+            box-shadow: -2px 0 2px rgba(0,0,0,0.03);
+        }
+
+        .tab-bar > .tab {
+            margin-right: 0;
+        }
+
+        .tab-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab {
+            background-color: #e8e8e8;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            padding: 2px 8px;
+            cursor: pointer;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            min-width: 120px;
+            max-width: 200px;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .tab.active {
+            background-color: white;
+            border-bottom: 1px solid white;
+            z-index: 1;
+        }
+
+        .tab:not(.active):hover {
+            background-color: #f0f0f0;
+        }
+
+        .tab-title {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .tab-close {
+            margin-left: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #666;
+        }
+
+        .tab-close:hover {
+            background-color: #ff4444;
+            color: white;
+        }
+
+        /* Editor Area */
+        .editor-container {
+            flex: 1;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .editor-tab-content {
+            display: none;
+            height: 100%;
+        }
+
+        .editor-tab-content.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .CodeMirror {
+            flex: 1 1 auto;
+            height: auto;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 10pt;
+            line-height: 1.2;
+        }
+
+        /* Fix CodeMirror text alignment issues */
+        .CodeMirror-lines {
+            padding-left: 4px !important;
+            text-align: left !important;
+        }
+        
+        /* File changed dialog styles */
+        .modal-dialog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            max-width: 90%;
+        }
+        
+        .modal-header {
+            padding: 10px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        
+        .modal-body {
+            padding: 15px;
+        }
+        
+        .modal-footer {
+            padding: 10px 15px;
+            border-top: 1px solid #ddd;
+            text-align: right;
+        }
+        
+        .btn {
+            padding: 6px 12px;
+            margin-left: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #e5e5e5;
+        }
+        .CodeMirror-line {
+            text-align: left !important;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            background-color: #f0f0f0;
+            border-top: 1px solid #ccc;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            font-size: 10px;
+            color: #666;
+            flex-shrink: 0;
+            min-height: 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .status-bar .status-item {
+            padding: 0 10px;
+            position: relative;
+        }
+
+        .status-bar .status-item:not(:first-child)::before {
+            content: "";
+            border-left: 1px solid #ccc;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Tab Switcher Dialog (hidden by default, used as a template) -->
+    <div id="tab-switcher-dialog-template" class="tab-switcher-dialog" style="display:none;">
+        <ul>
+            <!-- Tab items will be dynamically inserted here -->
+        </ul>
+    </div>
+
+        <!-- TemporaryFile Save Dialog DOM -->
+        <div id="temporaryfile-save-overlay" style="display:none;">
+            <div id="temporaryfile-save-dialog">
+                <div class="save-title">Where do you want to save this file?</div>
+                <button id="save-local-btn">Local Drive</button>
+                <button id="save-gdrive-btn">Google Drive</button>
+                <button id="save-cancel-btn">Cancel</button>
+            </div>
+        </div>
+    <div class="context-menu-dropdown-template dropdown show" style="display:none;">
+
+    </div>
+    <!-- Menu Template (hidden, for cloning in Menu.js) -->
+    <div id="menu-template" style="display:none;">
+        <div class="menu-item" tabindex="0">
+            <span class="menu-label"></span>            
+            <div class="dropdown" style="display:none;"></div>
+        </div>
+    </div>
+    <!-- Menu Item Row Template (hidden, for cloning) -->
+    <div id="menu-item-template" style="display:none;">
+        <div class="menu-item-row" style="display:flex;align-items:center;">
+            <span class="menu-item-icon" style="width:18px;display:inline-block;text-align:center;"></span>
+            <span class="menu-item-label" style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+            <span class="menu-item-spacing" style="width:12px;"></span>
+            <span class="menu-item-shortcut" style="min-width:40px;text-align:right;"></span>
+            <span class="menu-item-expand" style="width:16px;text-align:center;"></span>
+        </div>
+    </div>
+    <div class="container">        
+        <!-- Tab Title Template (hidden, for cloning in Tab.js) -->
+        <div id="tab-title-template" style="display:none;">
+            <span class="tab-icon" style="display:none;"></span>
+            <span class="tab-title"></span>
+            <span class="tab-modified-indicator" style="display:none; color:rgb(5, 5, 5); font-size:14px; margin-left:2px;">•</span>
+            <span class="tab-close" data-tab-id="">×</span>
+        </div>
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <button class="toolbar-button" data-action="new" title="New Tab">
+                <img src="assets/icons/new_file_icon.svg" alt="New File" style="width:18px;height:18px;display:block;" />
+            </button>
+            <button class="toolbar-button" data-action="open" title="Open Local File">
+                <img src="assets/icons/open_file_icon.svg" alt="New File" style="width:18px;height:18px;display:block;" />
+            </button>
+            <button class="toolbar-button" data-action="open-gdrive" title="Open Google Drive File">
+                <img src="assets/icons/open_gdrive_file_icon.svg" alt="New File" style="width:18px;height:18px;display:block;" />
+            </button>
+            <button class="toolbar-button" data-action="save" title="Save">
+                <img src="assets/icons/save_file_icon.svg" alt="Save File" style="width:18px;height:18px;display:block;" />
+            </button>
+            <button class="toolbar-button" data-action="close" title="Close">
+                <img src="assets/icons/close_file_icon.svg" alt="Close File" style="width:18px;height:18px;display:block;" />
+            </button>
+            <div class="toolbar-separator" style="width:1px;height:20px;background:#ccc;margin:0 6px;"></div>
+            <button class="toolbar-button" data-action="cut" title="Cut">
+                <img src="assets/icons/cut_file_icon.svg" alt="Cut File" style="width:18px;height:18px;display:block;" />
+            </button>
+            <button class="toolbar-button" data-action="copy" title="Copy">
+                <img src="assets/icons/copy_icon.svg" alt="Copy" style="width:18px;height:18px;display:block;" />
+            </button>
+            <button class="toolbar-button" data-action="paste" title="Paste">
+                <img src="assets/icons/paste_icon.svg" alt="Paste" style="width:18px;height:18px;display:block;" />
+            </button>                        
+            <div class="toolbar-separator" style="width:1px;height:20px;background:#ccc;margin:0 6px;"></div>
+            <button class="toolbar-button" data-action="undo" title="Undo">
+                <img src="assets/icons/undo_icon.svg" alt="Undo" style="width:18px;height:18px;display:block;" />
+            </button>      
+            <button class="toolbar-button" data-action="redo" title="Redo">
+                <img src="assets/icons/redo_icon.svg" alt="Redo" style="width:18px;height:18px;display:block;" />
+            </button>                                    
+            <div class="toolbar-separator" style="width:1px;height:20px;background:#ccc;margin:0 6px;"></div>
+            <button class="toolbar-button" data-action="find" title="Find">
+                <img src="assets/icons/find_icon.svg" alt="Find" style="width:18px;height:18px;display:block;" />
+            </button>
+            <button class="toolbar-button" data-action="replace" title="Replace">
+                <img src="assets/icons/replace_icon.svg" alt="Replace" style="width:18px;height:18px;display:block;" />
+            </button>
+            <div class="toolbar-separator" style="width:1px;height:20px;background:#ccc;margin:0 6px;"></div>
+            <button class="toolbar-button" data-action="zoom-in" title="Zoom In">
+                <img src="assets/icons/zoomin_icon.svg" alt="Zoom In" style="width:18px;height:18px;display:block;" />
+            </button>
+            <button class="toolbar-button" data-action="zoom-out" title="Zoom Out">
+                <img src="assets/icons/zoom_out_icon.svg" alt="Zoom Out" style="width:18px;height:18px;display:block;" />
+            </button>
+            <div class="toolbar-separator" style="width:1px;height:20px;background:#ccc;margin:0 6px;"></div>
+            <button class="toolbar-button" data-action="toggle-word-wrap" title="Word Wrap">
+                <img src="assets/icons/word_wrap_icon.svg" alt="Word Wrap" style="width:18px;height:18px;display:block;" />
+            </button>
+        </div>
+
+        <!-- Tab Bar -->
+        <div class="tab-bar" id="tab-bar">
+            <!-- Tabs will be dynamically created here -->
+            <div class="tab-bar-nav" id="tab-bar-nav">
+                <button class="tab-bar-nav-btn" id="tab-nav-left" title="Scroll Left">&#60;</button>
+                <button class="tab-bar-nav-btn" id="tab-nav-right" title="Scroll Right">&#62;</button>
+                <button class="tab-bar-nav-btn" id="tab-nav-dropdown" title="Show All Tabs">&#9660;</button>
+                <div class="tab-bar-nav-dropdown" id="tab-bar-nav-dropdown"></div>
+            </div>
+        </div>
+
+        <!-- Editor Container -->
+        <div class="editor-container" id="editor-container">
+            <!-- Editor tabs will be dynamically created here -->
+        </div>
+
+        <!-- Custom Search Dialog -->
+    <div id="search-dialog2" class="search-dialog2" style="display: none; position: absolute; left: 0; right: 0; bottom: 0; z-index: 100;">
+            <div class="search-close-btn">×</div>
+            <div class="search-label search-main-label">Find:</div>
+            <input type="text" class="search-input" />
+            <div class="search-label replace-label" style="display:none;">To:</div>
+            <input type="text" class="replace-input" style="display:none;" />
+            <button class="replace-btn" style="display:none;">Replace</button>
+            <button class="replace-all-btn" style="display:none;">Replace All</button>
+            <button class="search-nav-btn search-prev-btn">&lt;</button>
+            <button class="search-nav-btn search-next-btn">&gt;</button>
+            <div class="search-option">
+                <input type="checkbox" id="search-match-case" class="search-match-case-checkbox" />
+                <label for="search-match-case">Match case</label>
+            </div>
+            <span class="search-match-counter" style="margin-left:8px;min-width:60px;"> </span>
+        </div>
+        
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-item" id="cursor-position">Line 1, Col 1</div>
+            <div class="status-item" id="file-type">Plain Text</div>
+            <div class="status-item" id="encoding">UTF-8</div>
+        </div>
+    </div>
+
+    <!-- File input for opening files (fallback) -->
+    <input type="file" id="file-input" style="display: none;" multiple accept="*/*">
+
+
+    <!-- Tab context menu DOM -->
+    <div id="tab-context-menu" class="dropdown tab-context-dropdown" style="position:absolute;display:none;z-index:10000;">
+        <div class="dropdown-item" data-action="close">Close</div>
+        <div class="dropdown-item submenu-item" id="tab-move-menu">
+            <span class="menu-item-text">Move</span>
+            <span class="arrow">▶</span>
+            <div class="submenu" id="tab-move-submenu">
+                <div class="dropdown-item" data-action="move-left">Left</div>
+                <div class="dropdown-item" data-action="move-right">Right</div>
+                <div class="dropdown-item" data-action="move-begin">Begin</div>
+                <div class="dropdown-item" data-action="move-end">End</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <!-- CodeMirror core -->
+    <script src="js/codemirror.min.js"></script>
+    <script src="js/helpers/menuPositioning.js"></script>
+    <script src="js/helpers/FileTypes.js"></script>
+    
+    <!-- CodeMirror addons (load before language modes) -->
+    <script src="js/addon/mode/simple.min.js"></script>
+    <script src="js/addon/mode/overlay.min.js"></script>
+    <script src="js/addon/selection/mark-selection.min.js"></script>
+    <script src="js/addon/search/searchcursor.min.js"></script>
+    <script src="js/addon/search/search.min.js"></script>
+    <script src="js/addon/dialog/dialog.min.js"></script>
+    <link rel="stylesheet" href="css/addon/dialog/dialog.min.css">
+    
+    <!-- CodeMirror language modes -->
+    <script src="js/modes/apl.min.js"></script>
+    <script src="js/modes/asciiarmor.min.js"></script>
+    <script src="js/modes/asterisk.min.js"></script>
+    <script src="js/modes/brainfuck.min.js"></script>
+    <script src="js/modes/clike.min.js"></script>
+    <script src="js/modes/clojure.min.js"></script>
+    <script src="js/modes/cmake.min.js"></script>
+    <script src="js/modes/cobol.min.js"></script>
+    <script src="js/modes/coffeescript.min.js"></script>
+    <script src="js/modes/commonlisp.min.js"></script>
+    <script src="js/modes/crystal.min.js"></script>
+    <script src="js/modes/css.min.js"></script>
+    <script src="js/modes/cypher.min.js"></script>
+    <script src="js/modes/d.min.js"></script>
+    <script src="js/modes/dart.min.js"></script>
+    <script src="js/modes/diff.min.js"></script>
+    <script src="js/modes/dtd.min.js"></script>
+    <script src="js/modes/dylan.min.js"></script>
+    <script src="js/modes/ebnf.min.js"></script>
+    <script src="js/modes/ecl.min.js"></script>
+    <script src="js/modes/eiffel.min.js"></script>
+    <script src="js/modes/elm.min.js"></script>
+    <script src="js/modes/erlang.min.js"></script>
+    <script src="js/modes/factor.min.js"></script>
+    <script src="js/modes/fcl.min.js"></script>
+    <script src="js/modes/forth.min.js"></script>
+    <script src="js/modes/fortran.min.js"></script>
+    <script src="js/modes/gas.min.js"></script>
+    <script src="js/modes/gherkin.min.js"></script>
+    <script src="js/modes/go.min.js"></script>
+    <script src="js/modes/groovy.min.js"></script>
+    <script src="js/modes/haml.min.js"></script>
+    <script src="js/modes/handlebars.min.js"></script>
+    <script src="js/modes/haskell-literate.min.js"></script>
+    <script src="js/modes/haxe.min.js"></script>
+    <script src="js/modes/htmlmixed.min.js"></script>
+    <script src="js/modes/http.min.js"></script>
+    <script src="js/modes/idl.min.js"></script>
+    <script src="js/modes/javascript.min.js"></script>
+    <script src="js/modes/julia.min.js"></script>
+    <script src="js/modes/livescript.min.js"></script>
+    <script src="js/modes/lua.min.js"></script>
+    <script src="js/modes/markdown.min.js"></script>
+    <script src="js/modes/gfm.min.js"></script>
+    <script src="js/modes/mathematica.min.js"></script>
+    <script src="js/modes/mbox.min.js"></script>
+    <script src="js/modes/mirc.min.js"></script>
+    <script src="js/modes/modelica.min.js"></script>
+    <script src="js/modes/mscgen.min.js"></script>
+    <script src="js/modes/mumps.min.js"></script>
+    <script src="js/modes/nginx.min.js"></script>
+    <script src="js/modes/nsis.min.js"></script>
+    <script src="js/modes/ntriples.min.js"></script>
+    <script src="js/modes/octave.min.js"></script>
+    <script src="js/modes/oz.min.js"></script>
+    <script src="js/modes/pascal.min.js"></script>
+    <script src="js/modes/pegjs.min.js"></script>
+    <script src="js/modes/perl.min.js"></script>
+    <script src="js/modes/php.min.js"></script>
+    <script src="js/modes/pig.min.js"></script>
+    <script src="js/modes/powershell.min.js"></script>
+    <script src="js/modes/properties.min.js"></script>
+    <script src="js/modes/protobuf.min.js"></script>
+    <script src="js/modes/pug.min.js"></script>
+    <script src="js/modes/puppet.min.js"></script>
+    <script src="js/modes/python.min.js"></script>
+    <script src="js/modes/q.min.js"></script>
+    <script src="js/modes/r.min.js"></script>
+    <script src="js/modes/rpm.min.js"></script>
+    <script src="js/modes/rst.min.js"></script>
+    <script src="js/modes/ruby.min.js"></script>
+    <script src="js/modes/rust.min.js"></script>
+    <script src="js/modes/sas.min.js"></script>
+    <script src="js/modes/sass.min.js"></script>
+    <script src="js/modes/scheme.min.js"></script>
+    <script src="js/modes/shell.min.js"></script>
+    <script src="js/modes/sieve.min.js"></script>
+    <script src="js/modes/slim.min.js"></script>
+    <script src="js/modes/smalltalk.min.js"></script>
+    <script src="js/modes/smarty.min.js"></script>
+    <script src="js/modes/solr.min.js"></script>
+    <script src="js/modes/soy.min.js"></script>
+    <script src="js/modes/sparql.min.js"></script>
+    <script src="js/modes/spreadsheet.min.js"></script>
+    <script src="js/modes/sql.min.js"></script>
+    <script src="js/modes/stex.min.js"></script>
+    <script src="js/modes/stylus.min.js"></script>
+    <script src="js/modes/swift.min.js"></script>
+    <script src="js/modes/tcl.min.js"></script>
+    <script src="js/modes/textile.min.js"></script>
+    <script src="js/modes/tiddlywiki.min.js"></script>
+    <script src="js/modes/tiki.min.js"></script>
+    <script src="js/modes/toml.min.js"></script>
+    <script src="js/modes/tornado.min.js"></script>
+    <script src="js/modes/troff.min.js"></script>
+    <script src="js/modes/ttcn-cfg.min.js"></script>
+    <script src="js/modes/ttcn.min.js"></script>
+    <script src="js/modes/turtle.min.js"></script>
+    <script src="js/modes/twig.min.js"></script>
+    <script src="js/modes/vb.min.js"></script>
+    <script src="js/modes/vbscript.min.js"></script>
+    <script src="js/modes/velocity.min.js"></script>
+    <script src="js/modes/verilog.min.js"></script>
+    <script src="js/modes/vhdl.min.js"></script>
+    <script src="js/modes/vue.min.js"></script>
+    <script src="js/modes/wast.min.js"></script>
+    <script src="js/modes/webidl.min.js"></script>
+    <script src="js/modes/xml.min.js"></script>
+    <script src="js/modes/xquery.min.js"></script>
+    <script src="js/modes/yacas.min.js"></script>
+    <script src="js/modes/yaml-frontmatter.min.js"></script>
+    <script src="js/modes/yaml.min.js"></script>
+    <script src="js/modes/z80.min.js"></script>
+    
+    <!-- Dialog enhancer functionality is now integrated into SearchDialog.js -->
+    
+		<!-- Load our modular architecture -->
+    <script src="js/File.js"></script>
+    <script src="js/LocalFile.js"></script>
+    <script src="js/dialogs/GDriveDialog.js"></script>
+    <script src="js/GDriveFile.js"></script>
+    <script src="js/TemporaryFileSaveDlg.js"></script>
+    <script src="js/TemporaryFile.js"></script>
+    <script src="js/FileFactory.js"></script>
+    <script src="js/HistoryManager.js"></script>
+
+		<!-- Load search and shortcut functionality first -->
+        <script src="js/SearchDialog2.js"></script>
+        <script src="js/ShortcutManager.js"></script>
+
+		<!-- Load menu system -->
+         <script src="js/ContextMenuDropdown.js"></script>
+		<script src="js/MenuItem.js"></script>
+        <script src="js/MenuItemSeparator.js"></script>
+        <script src="js/ExpandableMenuItem.js"></script>
+		<script src="js/Menu.js"></script>
+		<script src="js/FileMenu.js"></script>
+		<script src="js/EditMenu.js"></script>
+		<script src="js/SearchMenu.js"></script>
+		<script src="js/ViewMenu.js"></script>
+        <script src="js/LanguageSubmenu.js"></script>
+		<script src="js/LanguagesMenu.js"></script>        
+        <script src="js/HelpMenu.js"></script>
+    	<script src="js/MenuBar.js"></script>
+
+        <script src="js/CacheStorage.js"></script>
+        <script src="js/TabSwitcherDialog.js"></script>
+		<!-- Load main editor (updated) -->
+
+        <script src="js/TabContextMenu.js"></script>
+    
+    <script src="js/EditorContextMenu.js"></script>
+    <script src="js/Tab.js"></script>
+
+    <script src="js/NotepadPlusEditor.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+/* tab_switcher_dialog.css */
+
+.tab-switcher-dialog {
+  position: fixed;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, 0);
+  background: #fff;
+  color: #222;
+  padding: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.16);
+  z-index: 9999;
+  min-width: 320px;
+  max-width: 520px;
+  max-height: 400px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+.tab-switcher-dialog ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 360px;
+  overflow-y: auto;
+}
+.tab-switcher-dialog li {
+  padding: 4px 12px;
+  cursor: pointer;
+  background: transparent;
+  font-weight: normal;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, font-weight 0.15s;
+}
+
+.tab-switcher-dialog li.selected {
+  background: #e5f3ff;
+  color: #316AC5;
+  font-weight: bold;
+}
+.tab-switcher-dialog li:focus {
+  outline: none;
+}
+
+/* When both selected and active-tab, show selection background and blue text */
+.tab-switcher-dialog li.selected.active-tab {
+  background: #e5f3ff !important;
+  color: #316AC5 !important;
+  font-weight: bold;
+}
+
+/* Active tab: bold, black, no background */
+.tab-switcher-dialog li.active-tab {
+  background: none !important;
+  color: #222 !important;
+  font-weight: bold;
+}
+.tab-switcher-dialog li:hover {
+  background: #e5f3ff;
+  color: #316AC5;
+}

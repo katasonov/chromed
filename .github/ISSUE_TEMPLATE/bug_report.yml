@@ -1,0 +1,46 @@
+name: "🐛 Bug Report"
+description: File a bug if something isn’t working as expected
+title: "[Bug] - "
+labels: [bug]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please fill out the form below so we can help you faster.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the bug and what you expected to happen.
+      placeholder: The app crashes when I try to open a Google Drive file...
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide step-by-step instructions.
+      placeholder: |
+        1. Click the ChromEd icon
+        2. Connect Google Drive
+        3. Try to open a file...
+    validations:
+      required: true
+  - type: input
+    id: chrome-version
+    attributes:
+      label: Chrome version
+      placeholder: e.g. 118.0.5993.90
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      placeholder: e.g. Windows 11 / macOS Sonoma
+  - type: dropdown
+    id: source
+    attributes:
+      label: Are you using the Web Store version?
+      options:
+        - Yes
+        - No (unpacked/developer version)

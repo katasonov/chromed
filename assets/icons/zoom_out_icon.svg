@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="32 32 192 192" xmlns="http://www.w3.org/2000/svg">
+<!-- Document background -->
+<rect fill="#FDF0D5" height="192" rx="16" ry="16" stroke="#005F99" stroke-width="10" width="192" x="32" y="32"/>
+<!-- Magnifying glass circle -->
+<!-- Magnifying glass handle -->
+<!-- Plus sign -->
+<circle cx="128" cy="128" fill="none" r="56" stroke="#F76C1E" stroke-width="10"/><line stroke="#F76C1E" stroke-linecap="round" stroke-width="10" x1="160" x2="200" y1="160" y2="200"/><line stroke="#F76C1E" stroke-linecap="round" stroke-width="10" x1="104" x2="152" y1="128" y2="128"/></svg>

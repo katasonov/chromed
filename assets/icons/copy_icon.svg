@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="32 16 192 224" xmlns="http://www.w3.org/2000/svg">
+<!-- Back Document -->
+<rect fill="#E6E6E6" height="192" rx="16" ry="16" stroke="#005F99" stroke-width="10" width="160" x="64" y="48"/>
+<!-- Front Document -->
+<rect fill="#FDF0D5" height="192" rx="16" ry="16" stroke="#005F99" stroke-width="10" width="160" x="32" y="16"/>
+</svg>

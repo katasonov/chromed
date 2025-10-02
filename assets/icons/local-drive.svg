@@ -1,0 +1,23 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Floppy disk icon">
+  <!-- floppy body -->
+  <rect x="32" y="32" width="192" height="192" rx="12" ry="12" fill="#1E40AF" stroke="#1E3A8A" stroke-width="4"></rect>
+  
+  <!-- metal shutter (top part) -->
+  <rect x="64" y="32" width="128" height="56" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="2"></rect>
+  
+  <!-- small notch on shutter -->
+  <rect x="176" y="40" width="16" height="32" fill="#6B7280"></rect>
+  
+  <!-- label area -->
+  <rect x="64" y="104" width="128" height="64" rx="4" ry="4" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="2"></rect>
+  
+  <!-- label lines -->
+  <line x1="72" y1="120" x2="184" y2="120" stroke="#9CA3AF" stroke-width="2"></line>
+  <line x1="72" y1="136" x2="184" y2="136" stroke="#9CA3AF" stroke-width="2"></line>
+  <line x1="72" y1="152" x2="144" y2="152" stroke="#9CA3AF" stroke-width="2"></line>
+  
+  <!-- disk hub -->
+  <circle cx="128" cy="192" r="18" fill="#374151"></circle>
+  <circle cx="128" cy="192" r="8" fill="#D1D5DB"></circle>
+</svg>

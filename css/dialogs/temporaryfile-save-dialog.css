@@ -1,0 +1,38 @@
+/* TemporaryFile Save Dialog Styles */
+#temporaryfile-save-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+#temporaryfile-save-dialog {
+  background: #fff;
+  padding: 2em 2.5em;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+  text-align: center;
+  min-width: 280px;
+}
+#temporaryfile-save-dialog .save-title {
+  font-size: 1.1em;
+  margin-bottom: 1em;
+}
+#temporaryfile-save-dialog button {
+  margin: 0 1em 0 0;
+  padding: 0.5em 1.5em;
+  font-size: 1em;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  background: #f7f7f7;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#temporaryfile-save-dialog button:last-child {
+  margin-right: 0;
+}
+#temporaryfile-save-dialog button:hover {
+  background: #e0e0e0;
+}

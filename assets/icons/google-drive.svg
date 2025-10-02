@@ -1,0 +1,6 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Google Drive circular icon">
+  <circle cx="128" cy="128" r="100" fill="none" stroke="#2F7BE0" stroke-width="36" stroke-dasharray="209.44 418.88" stroke-dashoffset="0"></circle>   <!-- blue arc -->
+  <circle cx="128" cy="128" r="100" fill="none" stroke="#24A148" stroke-width="36" stroke-dasharray="209.44 418.88" stroke-dashoffset="209.44"></circle> <!-- green arc -->
+  <circle cx="128" cy="128" r="100" fill="none" stroke="#F6B84B" stroke-width="36" stroke-dasharray="209.44 418.88" stroke-dashoffset="418.88"></circle> <!-- yellow arc -->
+</svg>

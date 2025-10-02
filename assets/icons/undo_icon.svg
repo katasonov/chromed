@@ -1,0 +1,17 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="32 32 192 192">
+  <!-- Document background -->
+  <rect x="32" y="32" width="192" height="192" rx="16" ry="16"
+        fill="#FDF0D5" stroke="#005F99" stroke-width="10"/>
+
+  <!-- Smooth clockwise redo arrow with arrowhead -->
+  <path d="M96 96
+           C166 96, 166 160, 96 160"
+        fill="none" stroke="#43A047" stroke-width="16"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Arrowhead at the start of the curve -->
+  <polyline points="116,80 96,96 116,112"
+        fill="none" stroke="#43A047" stroke-width="16"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

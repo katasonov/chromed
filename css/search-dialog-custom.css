@@ -1,0 +1,279 @@
+/* Enhanced styling for CodeMirror search dialog */
+.CodeMirror-dialog {
+    background-color: #f0f0f0;
+    border-top: 1px solid #ccc;
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
+    padding: 0.3em 0.8em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    z-index: 100; /* Ensure dialog is above other elements */
+    display: flex;
+    align-items: center;
+    height: 26px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+}
+
+/* Force dialog to bottom */
+.CodeMirror-dialog-top {
+    top: auto !important;
+    bottom: 0 !important;
+    border-top: 1px solid #ccc;
+    border-bottom: none;
+}
+
+/* Custom search dialog (new implementation) */
+.search-dialog2 {
+    background-color: #f0f0f0;
+    border-top: 1px solid #ccc;
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
+    padding: 5px 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    min-height: 36px;
+}
+
+/* Close button for custom search dialog */
+.search-dialog2 .search-close-btn {
+    cursor: pointer;
+    color: #666;
+    font-weight: bold;
+    margin-right: 5px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    line-height: 16px;
+    border-radius: 50%;
+}
+
+.search-dialog2 .search-close-btn:hover {
+    background-color: #ddd;
+    color: #333;
+}
+
+/* Label in the custom search dialog */
+.search-dialog2 .search-label {
+    margin-right: 5px;
+    color: #333;
+    white-space: nowrap;
+}
+
+/* Input field in the custom search dialog */
+
+.search-dialog2 .search-input,
+.search-dialog2 .replace-input {
+    width: 180px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 3px 5px;
+    margin: 0 2px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    background-color: white;
+    color: black;
+    outline: none;
+}
+
+.search-dialog2 .search-input:focus,
+.search-dialog2 .replace-input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 3px rgba(74, 144, 226, 0.5);
+}
+
+/* Navigation buttons for search (prev/next) */
+.search-dialog2 .search-nav-btn {
+    width: 24px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: #f5f5f5;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 0 2px;
+    padding: 0;
+    line-height: 1;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-dialog2 .search-nav-btn:hover {
+    background-color: #e0e0e0;
+    border-color: #b0b0b0;
+}
+
+.search-dialog2 .search-nav-btn:active {
+    background-color: #d0d0d0;
+    border-color: #a0a0a0;
+}
+
+/* Replace buttons */
+.search-dialog2 .replace-btn,
+.search-dialog2 .replace-all-btn {
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: #f5f5f5;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 0 2px;
+    padding: 0 8px;
+    line-height: 1;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-dialog2 .replace-btn:hover,
+.search-dialog2 .replace-all-btn:hover {
+    background-color: #e0e0e0;
+    border-color: #b0b0b0;
+}
+
+.search-dialog2 .replace-btn:active,
+.search-dialog2 .replace-all-btn:active {
+    background-color: #d0d0d0;
+    border-color: #a0a0a0;
+}
+
+/* Search options (checkboxes and labels) */
+.search-dialog2 .search-option {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    font-size: 12px;
+    color: #333;
+}
+
+.search-dialog2 .search-option input[type="checkbox"] {
+    margin: 0 4px 0 0;
+    cursor: pointer;
+}
+
+.search-dialog2 .search-option label {
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: .1em;
+}
+
+/* Original close button (X) */
+.search-close-btn {
+    cursor: pointer;
+    color: #666;
+    font-weight: bold;
+    margin-right: 5px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    line-height: 16px;
+    border-radius: 50%;
+}
+
+.search-close-btn:hover {
+    background-color: #ddd;
+    color: #333;
+}
+
+/* Navigation links */
+.search-nav-link {
+    cursor: pointer;
+    color: #333;
+    margin: 0 6px;
+    font-weight: bold;
+    user-select: none;
+}
+
+.search-nav-link:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+/* Count label */
+.search-count {
+    margin-left: 10px;
+    color: #555;
+    font-size: 11px;
+}
+
+/* Match case checkbox */
+.search-match-case {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.search-match-case input {
+    margin-right: 4px;
+}
+
+.search-match-case label {
+    font-size: 11px;
+    color: #333;
+}
+
+/* Search label */
+.search-label {
+    margin-right: 5px;
+    color: #333;
+}
+
+.CodeMirror-dialog input {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 3px 5px;
+    margin: 0 5px;
+    width: 20em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    background-color: white; /* Ensure background is distinct */
+    color: black; /* Ensure text is visible */
+    outline: none; /* Remove default browser outline */
+}
+
+.CodeMirror-dialog input:focus {
+    border-color: #4a90e2; /* Highlight when focused */
+    box-shadow: 0 0 3px rgba(74, 144, 226, 0.5);
+}
+
+.CodeMirror-dialog button {
+    display: none; /* Hide default buttons */
+}
+
+/* Highlighted search matches */
+.CodeMirror .searching {
+    background-color: rgba(255, 255, 0, 0.4);
+    border: 1px solid rgba(200, 200, 0, 0.5);
+    margin: -1px;
+    padding: 0;
+    border-radius: 2px;
+}
+
+/* Current search match (active one) */
+.CodeMirror .searching.active-match {
+    background-color: rgba(255, 165, 0, 0.5);
+    border: 1px solid rgba(220, 130, 0, 0.6);
+    margin: -1px;
+    padding: 0;
+    border-radius: 2px;
+}
+
+.CodeMirror-search-match {
+    background-color: rgba(255, 255, 0, 0.3);
+    border: 1px solid rgba(200, 200, 0, 0.5);
+}
+
