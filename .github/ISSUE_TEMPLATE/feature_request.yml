@@ -8,13 +8,6 @@ body:
     attributes:
       value: |
         Got an idea to improve ChromEd? Let us know below!
-  - type: input
-    id: feature-title
-    attributes:
-      label: Feature summary
-      placeholder: e.g. Add syntax highlighting for Markdown
-    validations:
-      required: true
   - type: textarea
     id: description
     attributes:
@@ -23,15 +16,3 @@ body:
       placeholder: It would highlight headings, links, and code blocks when editing `.md` files...
     validations:
       required: true
-  - type: textarea
-    id: alternatives
-    attributes:
-      label: Alternatives or workarounds
-      description: Have you found a way to do this already? Or similar features in other apps?
-  - type: checkboxes
-    id: willing-to-help
-    attributes:
-      label: Would you like to help implement this?
-      options:
-        - label: I'm interested in contributing the code
-        - label: I can help with testing or feedback
