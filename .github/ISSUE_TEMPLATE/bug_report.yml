@@ -22,8 +22,8 @@ body:
       label: Steps to reproduce
       description: Provide step-by-step instructions.
       placeholder: |
-        1. Click the ChromEd icon
-        2. Connect Google Drive
+        1. Click the ChromEd icon  
+        2. Connect Google Drive  
         3. Try to open a file...
     validations:
       required: true
@@ -37,10 +37,10 @@ body:
     attributes:
       label: Operating System
       placeholder: e.g. Windows 11 / macOS Sonoma
-  - type: dropdown
+  - type: checkboxes
     id: source
     attributes:
       label: Are you using the Web Store version?
       options:
-        - Yes
-        - No (unpacked/developer version)
+        - label: "Yes"
+        - label: "No, I’m using the unpacked/dev version"
