@@ -61,3 +61,10 @@ Created by Alexander Katasonov in 2025.
 Not affiliated with Notepad++.
 
 ---
+
+---
+
+## 🧾 Third-Party Licenses
+
+This project includes [CodeMirror 5](https://codemirror.net/), licensed under the MIT License.  
+See [`THIRD_PARTY_NOTICES.txt`](./THIRD_PARTY_NOTICES.txt) for full license text.
