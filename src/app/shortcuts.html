@@ -9,54 +9,71 @@
         body { font-family: Arial, sans-serif; margin: 2em; background: #f9f9f9; }
         h1 { margin-bottom: 0.5em; }
         h2 { margin-top: 2em; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 2em; }
-        th, td { padding: 0.5em 1em; border-bottom: 1px solid #ddd; }
-        th { background: #eee; text-align: left; }
-        tr.rare { color: #888; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 2em; }
+    th, td { padding: 0.5em 0.5em; border-bottom: 1px solid #ddd; }
+    th { background: #eee; text-align: center; }
+    td { text-align: center; }
+    th.shortcut, td.shortcut { width: 110px; }
+    th.action, td.action { text-align: left; width: auto; }
+    tr.rare { color: #888; }
     </style>
 </head>
 <body>
     <h1>Keyboard Shortcuts</h1>
     <h2>Main & Major Shortcuts</h2>
     <table>
-        <tr><th>Shortcut</th><th>Action</th></tr>
-        <tr><td>Ctrl+S</td><td>Save</td></tr>
-    <tr><td>Ctrl+O</td><td>Open (Local)</td></tr>
-    <tr><td>Ctrl+Alt+O</td><td>Open (Google Drive)</td></tr>
-        <tr><td>Ctrl+Alt+N</td><td>New</td></tr>
-        <tr><td>Ctrl+Z</td><td>Undo</td></tr>
-        <tr><td>Ctrl+Y</td><td>Redo</td></tr>
-        <tr><td>Ctrl+X</td><td>Cut</td></tr>
-        <tr><td>Ctrl+C</td><td>Copy</td></tr>
-        <tr><td>Ctrl+V</td><td>Paste</td></tr>
-        <tr><td>Ctrl+A</td><td>Select All</td></tr>
-        <tr><td>Ctrl+Shift+S</td><td>Save As</td></tr>
-        <tr><td>Ctrl+Alt+W</td><td>Close</td></tr>
-        <tr><td>F5</td><td>Reload</td></tr>
-        <tr><td>Ctrl+=</td><td>Zoom In</td></tr>
-        <tr><td>Ctrl+-</td><td>Zoom Out</td></tr>
-        <tr><td>Ctrl+0</td><td>Reset Zoom</td></tr>
-        <tr><td>F11</td><td>Full Screen</td></tr>
-        <tr><td>Ctrl+F</td><td>Find...</td></tr>
-        <tr><td>F3</td><td>Find Next</td></tr>
-        <tr><td>Shift+F3</td><td>Find Previous</td></tr>
-        <tr><td>Ctrl+H</td><td>Replace...</td></tr>
+        <tr>
+            <th class="shortcut">Win/Linux</th>
+            <th class="shortcut">MacOS</th>
+            <th class="action">Action</th>
+        </tr>
+        <tr><td class="shortcut">Ctrl+S</td><td class="shortcut">Cmd+S</td><td class="action">Save</td></tr>
+        <tr><td class="shortcut">Ctrl+O</td><td class="shortcut">Cmd+O</td><td class="action">Open (Local)</td></tr>
+        <tr><td class="shortcut">Ctrl+Alt+O</td><td class="shortcut">Cmd+Option+O</td><td class="action">Open (Google Drive)</td></tr>
+        <tr><td class="shortcut">Ctrl+Alt+N</td><td class="shortcut">Cmd+Option+N</td><td class="action">New</td></tr>
+        <tr><td class="shortcut">Ctrl+Z</td><td class="shortcut">Cmd+Z</td><td class="action">Undo</td></tr>
+        <tr><td class="shortcut">Ctrl+Y</td><td class="shortcut">Cmd+Shift+Z</td><td class="action">Redo</td></tr>
+        <tr><td class="shortcut">Ctrl+X</td><td class="shortcut">Cmd+X</td><td class="action">Cut</td></tr>
+        <tr><td class="shortcut">Ctrl+C</td><td class="shortcut">Cmd+C</td><td class="action">Copy</td></tr>
+        <tr><td class="shortcut">Ctrl+V</td><td class="shortcut">Cmd+V</td><td class="action">Paste</td></tr>
+        <tr><td class="shortcut">Ctrl+A</td><td class="shortcut">Cmd+A</td><td class="action">Select All</td></tr>
+        <tr><td class="shortcut">Ctrl+Shift+S</td><td class="shortcut">Cmd+Shift+S</td><td class="action">Save As</td></tr>
+        <tr><td class="shortcut">Ctrl+Alt+W</td><td class="shortcut">Cmd+Option+W</td><td class="action">Close</td></tr>
+        <tr><td class="shortcut">F5</td><td class="shortcut">F5</td><td class="action">Reload</td></tr>
+        <tr><td class="shortcut">Ctrl+=</td><td class="shortcut">Cmd+=</td><td class="action">Zoom In</td></tr>
+        <tr><td class="shortcut">Ctrl+-</td><td class="shortcut">Cmd+-</td><td class="action">Zoom Out</td></tr>
+        <tr><td class="shortcut">Ctrl+0</td><td class="shortcut">Cmd+0</td><td class="action">Reset Zoom</td></tr>
+        <tr><td class="shortcut">F11</td><td class="shortcut">F11</td><td class="action">Full Screen</td></tr>
+        <tr><td class="shortcut">Ctrl+F</td><td class="shortcut">Cmd+F</td><td class="action">Find...</td></tr>
+        <tr><td class="shortcut">F3</td><td class="shortcut">Cmd+G</td><td class="action">Find Next</td></tr>
+        <tr><td class="shortcut">Shift+F3</td><td class="shortcut">Cmd+Shift+G</td><td class="action">Find Previous</td></tr>
+        <tr><td class="shortcut">Ctrl+H</td><td class="shortcut">Cmd+H</td><td class="action">Replace...</td></tr>
     </table>
     <h2>Tab & Menu Shortcuts</h2>
     <table>
-        <tr><th>Shortcut</th><th>Action</th></tr>
-        <tr><td>Alt+Up</td><td>Tab Switcher (up)</td></tr>
-        <tr><td>Alt+Down</td><td>Tab Switcher (down)</td></tr>
-        <tr><td>Alt+F</td><td>Open File menu</td></tr>
-        <tr><td>Alt+E</td><td>Open Edit menu</td></tr>
-        <tr><td>Alt+S</td><td>Open Search menu</td></tr>
-        <tr><td>Alt+V</td><td>Open View menu</td></tr>
-        <tr><td>Alt+L</td><td>Open Languages menu</td></tr>
+    <tr>
+        <th class="shortcut">Win/Linux</th>
+        <th class="shortcut">MacOS</th>
+        <th class="action">Action</th>
+    </tr>
+    <tr><td class="shortcut">Alt+Up</td><td class="shortcut">Option+Up</td><td class="action">Tab Switcher (up)</td></tr>
+    <tr><td class="shortcut">Alt+Down</td><td class="shortcut">Option+Down</td><td class="action">Tab Switcher (down)</td></tr>
+
+    <!-- Option A remap to avoid collisions on macOS -->
+    <tr><td class="shortcut">Alt+F</td><td class="shortcut">Ctrl+Option+F</td><td class="action">Open File menu</td></tr>
+    <tr><td class="shortcut">Alt+E</td><td class="shortcut">Ctrl+Option+E</td><td class="action">Open Edit menu</td></tr>
+    <tr><td class="shortcut">Alt+S</td><td class="shortcut">Ctrl+Option+S</td><td class="action">Open Search menu</td></tr>
+    <tr><td class="shortcut">Alt+V</td><td class="shortcut">Ctrl+Option+V</td><td class="action">Open View menu</td></tr>
+    <tr><td class="shortcut">Alt+L</td><td class="shortcut">Ctrl+Option+L</td><td class="action">Open Languages menu</td></tr>
     </table>
     <h2>Other Shortcuts</h2>
     <table>
-        <tr><th>Shortcut</th><th>Action</th></tr>
-        <tr><td>Escape</td><td>Global cancel/close</td></tr>
+        <tr>
+            <th class="shortcut">Win/Linux</th>
+            <th class="shortcut">MacOS</th>
+            <th class="action">Action</th>
+        </tr>
+        <tr><td class="shortcut">Escape</td><td class="shortcut">Escape</td><td class="action">Global cancel/close</td></tr>
     </table>
 </body>
 </html>
