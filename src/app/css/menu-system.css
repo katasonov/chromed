@@ -430,6 +430,36 @@
     .dropdown-item .shortcut {
         color: #999;
     }
+
+  /* Top-level menu item focus (keyboard) */
+  .menu-item:focus {
+    outline: none !important;                 /* remove blue outline */
+    background: transparent !important;       /* no bright fill */
+    box-shadow: inset 0 0 0 1px #3a3f44;      /* thin inner border */
+    border-radius: 2px;
+  }
+
+  /* Dropdown items when focused/selected via keyboard */
+  .dropdown-item:focus,
+  .dropdown-item.selected {
+    outline: none !important;
+    background: transparent !important;
+    box-shadow: inset 0 0 0 1px #3a3f44;      /* same thin border */
+    border-radius: 2px;
+  }
+
+  /* Keep active press subtle in dark */
+  .dropdown-item:active {
+    background: #2a2d2e !important;
+    box-shadow: none;
+  }
+
+  /* If you use a special "active" class on top-level items */
+  .menu-item.active {
+    background: transparent !important;
+    border: 1px solid #3a3f44 !important;
+    padding: 3px 7px; /* keep the existing compensation */
+  }    
 }
 
 /* Responsive adjustments */
