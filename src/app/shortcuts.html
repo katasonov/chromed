@@ -6,16 +6,28 @@
     <title>Keyboard Shortcuts</title>
     <link rel="stylesheet" href="css/menu-system.css">
     <style>
-        body { font-family: Arial, sans-serif; margin: 2em; background: #f9f9f9; }
+        body { font-family: Arial, sans-serif; margin: 2em; background: #f9f9f9; color: #222; }
         h1 { margin-bottom: 0.5em; }
         h2 { margin-top: 2em; }
-    table { width: 100%; border-collapse: collapse; margin-bottom: 2em; }
-    th, td { padding: 0.5em 0.5em; border-bottom: 1px solid #ddd; }
-    th { background: #eee; text-align: center; }
-    td { text-align: center; }
-    th.shortcut, td.shortcut { width: 110px; }
-    th.action, td.action { text-align: left; width: auto; }
-    tr.rare { color: #888; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 2em; }
+        th, td { padding: 0.5em 0.5em; border-bottom: 1px solid #ddd; }
+        th { background: #eee; text-align: center; }
+        td { text-align: center; }
+        th.shortcut, td.shortcut { width: 110px; }
+        th.action, td.action { text-align: left; width: auto; }
+        tr.rare { color: #888; }
+
+        /* Dark mode styles */
+        @media (prefers-color-scheme: dark) {
+            body { background: #181a1b; color: #e8e6e3; }
+            h1, h2 { color: #fafafa; }
+            table { background: #232629; }
+            th, td { border-bottom: 1px solid #444; }
+            th { background: #232629; color: #fafafa; }
+            td { color: #e8e6e3; }
+            tr.rare { color: #888; }
+            a { color: #8ab4f8; }
+        }
     </style>
 </head>
 <body>

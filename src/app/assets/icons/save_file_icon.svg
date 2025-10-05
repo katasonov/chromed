@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg viewBox="32 32 192 192" xmlns="http://www.w3.org/2000/svg">
 <!-- Disk Body -->
-<rect fill="#FDF0D5" height="192" rx="16" ry="16" stroke="#005F99" stroke-width="10" width="192" x="32" y="32"/>
+<rect fill="none" height="192" rx="16" ry="16" stroke="#25789a" stroke-width="20" width="192" x="32" y="32"/>
 <!-- Save Notch (Top Label Area) -->
-<rect fill="#ffffff" height="48" stroke="#005F99" stroke-width="6" width="96" x="80" y="48"/>
+<rect fill="none" height="48" stroke="#005F99" stroke-width="6" width="96" x="80" y="48"/>
+<!-- Disk Shutter -->
+<rect fill="none" height="40" rx="4" ry="4" width="40" x="108" y="120"/>
 <!-- Disk Shutter -->
 <rect fill="#f76c1e" height="40" rx="4" ry="4" width="40" x="108" y="120"/>
 <!-- Inner Detail -->

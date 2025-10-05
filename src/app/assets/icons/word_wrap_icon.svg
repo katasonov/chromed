@@ -2,15 +2,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="32 32 192 192">
   <!-- Document background -->
   <rect x="32" y="32" width="192" height="192" rx="16" ry="16"
-        fill="#FDF0D5" stroke="#005F99" stroke-width="10"/>
+        fill="none" stroke="#005F99" stroke-width="20"/>
 
   <!-- Text lines -->
   <line x1="64" y1="80" x2="176" y2="80"
-        stroke="#333" stroke-width="10" stroke-linecap="round"/>
+        stroke="#F76C1E" stroke-width="10" stroke-linecap="round"/>
   <line x1="64" y1="112" x2="176" y2="112"
-        stroke="#333" stroke-width="10" stroke-linecap="round"/>
+        stroke="#F76C1E" stroke-width="10" stroke-linecap="round"/>
   <line x1="64" y1="144" x2="120" y2="144"
-        stroke="#333" stroke-width="10" stroke-linecap="round"/>
+        stroke="#F76C1E" stroke-width="10" stroke-linecap="round"/>
 
   <!-- Wrap arrow (curved down-left arrow) -->
   <path d="M120 144 C160 144, 160 176, 120 176" fill="none"

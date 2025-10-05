@@ -2,7 +2,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="32 32 192 192">
   <!-- Document background -->
   <rect x="32" y="32" width="192" height="192" rx="16" ry="16"
-        fill="#FDF0D5" stroke="#005F99" stroke-width="10"/>
+        fill="none" stroke="#005F99" stroke-width="20"/>
 
   <!-- Smooth clockwise redo arrow with arrowhead -->
   <path d="M96 96

@@ -1,3 +1,46 @@
+/* Status Bar Styles (moved from index.html) */
+.status-bar {
+    background-color: #f0f0f0;
+    border-top: 1px solid #ccc;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    font-size: 10px;
+    color: #666;
+    flex-shrink: 0;
+    min-height: 20px;
+    justify-content: flex-end;
+}
+
+.status-bar .status-item {
+    padding: 0 10px;
+    position: relative;
+}
+
+.status-bar .status-item:not(:first-child)::before {
+    content: "";
+    border-left: 1px solid #ccc;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .status-bar {
+        background-color: #232629;
+        border-top: 1px solid #444;
+        color: #fafafa;
+    }
+    .status-bar .status-item {
+        color: #fafafa;
+    }
+    .status-bar .status-item:not(:first-child)::before {
+        border-left: 1px solid #444;
+    }
+}
 /* Tab icon (local/gdrive) */
 .tab-icon {
     display: inline-block;
@@ -46,6 +89,59 @@
     min-height: 24px;
     position: relative;
     z-index: 1000;
+}
+/* Toolbar styles (moved from index.html) */
+.toolbar {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    padding: 2px 4px;
+    flex-shrink: 0;
+    min-height: 28px;
+}
+
+.toolbar-button {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 0 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+}
+
+.toolbar-button:hover {
+    background-color: #e5f3ff;
+    border: 1px solid #316AC5;
+}
+
+.toolbar-separator {
+    width: 1px;
+    height: 20px;
+    background: #ccc;
+    margin: 0 6px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .toolbar {
+        background-color: #232629;
+        border-bottom: 1px solid #444;
+    }
+    .toolbar-button {
+        color: #fafafa;
+    }
+    .toolbar-button:hover {
+        background-color: #2a2d2e;
+        border: 1px solid #8ab4f8;
+    }
+    .toolbar-separator {
+        background: #444;
+    }
 }
 
 /* Menu Items */
@@ -288,37 +384,35 @@
 /* Dark theme support (for future) */
 @media (prefers-color-scheme: dark) {
     .menu-bar {
-        background-color: #2d2d2d;
-        border-bottom-color: #404040;
-        color: #e0e0e0;
+        background-color: #232629;
+        border-bottom: 1px solid #444;
+        color: #fafafa;
     }
-    
-    .menu-item:hover {
-        background-color: #404040;
+    .menu-item {
+        color: #e8e6e3;
     }
-    
+    .menu-item:hover,
+    .menu-item.open {
+        background-color: #2a2d2e;
+    }
     .dropdown {
-        background-color: #2d2d2d;
-        border-color: #404040;
-        color: #e0e0e0;
+        background-color: #232629;
+        border: 1px solid #444;
+        color: #fafafa;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.35);
     }
-    
     .dropdown-item {
-        color: #e0e0e0;
+        color: #e8e6e3;
     }
-    
     .dropdown-item:hover {
-        background-color: #404040;
+        background-color: #2a2d2e;
     }
-    
     .dropdown-item.disabled {
         color: #666;
     }
-    
     .dropdown hr {
-        border-top-color: #404040;
+        border-top-color: #444;
     }
-    
     .dropdown-item .shortcut {
         color: #999;
     }
