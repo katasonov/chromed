@@ -193,4 +193,167 @@ class FileTypes {
         return fileType ? fileType.fileExtensions[0] : "txt";
 
     }
+
+        // Canonical list of groups you want to show in the native file picker.
+        // Order matters: first item becomes default ("All Files").
+    static GROUP_DEFS = [
+        { key: 'all', label: 'All Files', exts: ['*'] },
+
+        // 1) Documents / plain text
+        { key: 'text_docs', label: 'Text & Docs', exts: [
+            'txt','text','log','md','markdown','rst','textile','nb','http'
+        ]},
+
+        // 2) Web surface (HTML/CSS/SVG/etc.)
+        { key: 'web_frontend', label: 'Web / Front-End', exts: [
+            'html','htm','xhtml','css','less','scss','sass','styl','svg','webidl'
+        ]},
+
+        // 3) JS/TS ecosystem (+ Vue)
+        { key: 'js_ts', label: 'JavaScript / TypeScript', exts: [
+            'js','mjs','jsx','ts','tsx','vue'
+        ]},
+
+        // 4) Server views & templates
+        { key: 'templates', label: 'Templates & Web Views', exts: [
+            'pug','jade','hbs','handlebars','twig','jinja2','j2','slim','haml','tornado','vm','jsp','aspx'
+        ]},
+
+        // 5) Data & markup formats
+        { key: 'data_markup', label: 'Data & Markup', exts: [
+            'csv','json','xml','xsl','yaml','yml','toml','dtd','xq','xquery','ttl','nt','nq'
+        ]},
+
+        // 6) Configurations & props
+        { key: 'config_props', label: 'Config / Properties', exts: [
+            'ini','properties','cfg','conf'
+        ]},
+
+        // 7) C / C++ / Obj-C (+ CMake)
+        { key: 'c_cpp_objc', label: 'C / C++ / Objective-C / CMake', exts: [
+            'c','h','cpp','cxx','cc','hpp','hh','hxx','m','mm','cmake','cmake.in','ino','idl'
+        ]},
+
+        // 8) Java & JVM languages
+        { key: 'java_jvm', label: 'Java / Kotlin / Scala / Groovy', exts: [
+            'java','kt','kts','scala','sc','groovy','gvy','gy','gsh'
+        ]},
+
+        // 9) .NET languages
+        { key: 'dotnet', label: 'C# / VB.NET', exts: ['cs','vb'] },
+
+        // 10) Python family
+        { key: 'python_cython', label: 'Python / Cython', exts: [
+            'py','pyw','py3','pyx','pxd','pxi'
+        ]},
+
+        // 11) Scripts (shell, Perl, PHP, Ruby, Lua, PowerShell, Coffee/Livescript)
+        { key: 'scripting', label: 'Shell / Perl / PHP / Ruby / Lua', exts: [
+            'sh','bash','zsh','fish','ps1','psd1','psm1','pl','pm','php','rb','rbw','lua','coffee','ls'
+        ]},
+
+        // 12) Functional / ML & friends
+        { key: 'functional_ml', label: 'Functional / ML', exts: [
+            'clj','cljs','cljc','edn','hs','lhs','elm','ex','exs','erl','hrl',
+            'ml','mli','fs','fsi','fsx','fsscript','lisp','lsp','scm','ss',
+            'hx','ceylon','cr','factor','fcl','fth','f','for','f90','f95','f03','f08','d','dylan','e','ecl'
+        ]},
+
+        // 13) Systems / low-level / HDL
+        { key: 'systems_hw', label: 'Systems / Low-Level / HDL', exts: [
+            'rs','go','swift','s','asm','v','vh','sv','vhdl','vhd','z80','wat','wast'
+        ]},
+
+        // 14) Scientific & math
+        { key: 'scientific', label: 'Scientific & Math', exts: [
+            'r','R','sas','mo','msc','ys'
+        ]},
+
+        // 15) Databases & query
+        { key: 'database_query', label: 'SQL & Query', exts: [
+            'sql','q','cypher','sparql','proto','pig','pp'
+        ]},
+    ];
+
+    /**
+     * Format a group label by adding up to 5 top extensions, e.g.:
+     * "Python / Cython (.py, .pyw, .pyx, ...)"
+     */
+    static _labelWithSampleExts(label, exts) {
+        if (!exts || !exts.length) return label;
+        const visible = exts.slice(0, 5).map(e => '.' + e);
+        const suffix = exts.length > 5 ? ', ...' : '';
+        return `${label} (${visible.join(', ')}${suffix})`;
+    }
+    
+        /**
+     * Build a single picker "type" entry from a label + extension list.
+     * Groups extensions under appropriate MIME types where possible.
+     */
+    static _buildPickerType(label, exts) {
+        // Special case "All Files": use */* with empty extension list to let everything show.
+        if (exts.length === 1 && exts[0] === '*') {
+            return {
+                description: label,
+                accept: { '*/*': [] },
+            };
+        }
+
+        // Group by mime for cleaner accept map
+        const accept = {};
+        const normalized = new Set(exts.filter(Boolean).map(e => e.replace(/^\./, '').toLowerCase()));
+        for (const ext of normalized) {
+            const mime = FileTypes.getMimeTypeForExtension(ext) || '*/*';
+            if (!accept[mime]) accept[mime] = [];
+            accept[mime].push('.' + ext);
+        }
+
+        // Deduplicate/clean
+        for (const m in accept) {
+            accept[m] = Array.from(new Set(accept[m]));
+        }
+
+        const labelWithExts = FileTypes._labelWithSampleExts(label, Array.from(normalized));
+        return { description: labelWithExts, accept };
+    }
+
+    /**
+     * Get the compact list of groups for the native picker.
+     * Optionally pass an array of group keys to include in custom order.
+     */
+    static getPickerTypeGroups(includeKeys = null) {
+        const defs = includeKeys
+            ? this.GROUP_DEFS.filter(g => includeKeys.includes(g.key))
+            : this.GROUP_DEFS;
+
+        return defs.map(g => this._buildPickerType(g.label, g.exts));
+    }
+
+    /** Return the group key that contains a given extension (or null). */
+    static _groupKeyForExt(ext) {
+        if (!ext) return null;
+        const clean = ext.replace(/^\./, '').toLowerCase();
+        const hit = this.GROUP_DEFS.find(g => g.exts.includes(clean) || g.exts.includes('*'));
+        return hit ? hit.key : null;
+    }
+
+    /**
+     * Build picker types for Save As. If a preferred extension is provided,
+     * put the matching group first so it becomes the default selection.
+     * Otherwise, we keep the default order (All Files first).
+     */
+    static getPickerTypeGroupsForSave(preferredExt = null) {
+        if (!preferredExt) return this.getPickerTypeGroups();
+
+        const key = this._groupKeyForExt(preferredExt);
+        if (!key) return this.getPickerTypeGroups();
+
+        // Reorder: [matchingGroup, ...others (keeping relative order)]
+        const defs = [...this.GROUP_DEFS];
+        const idx = defs.findIndex(g => g.key === key);
+        if (idx <= 0) return this.getPickerTypeGroups(); // already first or not found
+
+        const reordered = [defs[idx], ...defs.slice(0, idx), ...defs.slice(idx + 1)];
+        return reordered.map(g => this._buildPickerType(g.label, g.exts));
+    }    
 }

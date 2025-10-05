@@ -37,50 +37,36 @@ class LocalFile extends CEFile {
         }
     }
 
-   static async openFiles() {
-    if (!LocalFile.isSupported()) {
-        throw new Error("File System Access API is not supported");
-    }
+    static async openFiles() {
+        if (!LocalFile.isSupported()) {
+            throw new Error("File System Access API is not supported");
+        }
 
-    try {
-        // clone & fix fileTypes
-        let fileTypes = FileTypes.getAllFileTypes().map(type => {
-            if (type.displayName.toLowerCase() === 'all files') {
-                return {
-                    ...type,
-                    mimeType: '*/*',
-                    fileExtensions: []
-                };
+        try {
+            // Use compact group list instead of every single file type entry.
+            // "All Files" is first => becomes the default selection.
+            const pickerTypes = FileTypes.getPickerTypeGroups();
+
+            const fileHandles = await window.showOpenFilePicker({
+                multiple: true,
+                types: pickerTypes
+            });
+
+            const files = [];
+            for (const fileHandle of fileHandles) {
+                const file = await LocalFile.fromFileHandle(fileHandle);
+                file.markAsSaved(); // File is fresh from disk
+                files.push(file);
             }
-            return type;
-        });
-
-        const fileHandles = await window.showOpenFilePicker({
-            multiple: true,
-            types: fileTypes.map(type => ({
-                description: type.displayName,
-                accept: {
-                    [type.mimeType]: type.fileExtensions.map(
-                        ext => '.' + ext.replace(/^\./, '')
-                    )
-                }
-            }))
-        });
-
-        const files = [];
-        for (const fileHandle of fileHandles) {
-            const file = await LocalFile.fromFileHandle(fileHandle);
-            file.markAsSaved(); // File is fresh from disk
-            files.push(file);
+            return files;
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                return []; // User cancelled
+            }
+            throw new Error(`Failed to open files: ${error.message}`);
         }
-        return files;
-    } catch (error) {
-        if (error.name === 'AbortError') {
-            return []; // User cancelled
-        }
-        throw new Error(`Failed to open files: ${error.message}`);
     }
-}
+
 
     // Save file to existing location
     async save() {
@@ -153,52 +139,68 @@ class LocalFile extends CEFile {
     // Save file to new location
     static async saveAs(fileName, content) {
         let fileInstance = new LocalFile(fileName, content);
+
+        // Fallback if FSA is not supported
         if (!LocalFile.isSupported()) {
-            fileInstance.download(); // Fallback to download
-            //throw new Error("File System Access API is not supported");
-            return false; // Assume download is successful
+            fileInstance.download();
+            return false;
         }
 
         try {
-            let fileTypes = FileTypes.getAllFileTypes().map(type => {
-                if (type.displayName.toLowerCase() === 'all files') {
-                    // replace the "All Files" record
-                    return {
-                        ...type,
-                        mimeType: '*/*',
-                        fileExtensions: []
-                    };
-                }
-                return type;
-            });
-            const fileHandle = await window.showSaveFilePicker({
-                suggestedName: fileName,
-                types: fileTypes.map(type => ({
-                    description: type.displayName,
-                    accept: {
-                        [type.mimeType]: type.fileExtensions.map(
-                            ext => '.' + ext.replace(/^\./, '')
-                        )
+            // 1) Figure out the current extension (if any)
+            const hasExt = /\.[A-Za-z0-9_-]+$/.test(fileName || "");
+            const currentExt = hasExt ? fileName.split(".").pop() : null;
+
+            // 2) Build compact groups; put the matching group (by currentExt) first.
+            const pickerTypes = FileTypes.getPickerTypeGroupsForSave(currentExt);
+
+            // 3) Compute a suggested name:
+            //    - If user-provided name lacks an extension, append the *first* ext
+            //      from the first picker type (unless it's "All Files", which has none).
+            let suggestedName = fileName || "Untitled";
+            if (!hasExt) {
+                // Find first non-empty accept list and take its first extension
+                let defaultExtFromGroup = null;
+                if (Array.isArray(pickerTypes) && pickerTypes.length) {
+                    const firstAccept = pickerTypes[0].accept || {};
+                    const extArrays = Object.values(firstAccept).filter(arr => Array.isArray(arr) && arr.length > 0);
+                    if (extArrays.length > 0) {
+                        // example: ".txt"
+                        defaultExtFromGroup = extArrays[0][0];
                     }
-                }))
+                }
+                if (defaultExtFromGroup) {
+                    // Append (e.g., "Untitled" -> "Untitled.txt")
+                    suggestedName = `${suggestedName}${defaultExtFromGroup}`;
+                }
+                // If the first group is "All Files", defaultExtFromGroup will be null → no extension appended.
+            }
+
+            // 4) Show Save dialog with compact groups
+            const fileHandle = await window.showSaveFilePicker({
+                suggestedName,
+                types: pickerTypes,
+                // Keep "All Files" visible so users can choose no-extension saves:
+                excludeAcceptAllOption: false
             });
 
+            // 5) Write file
             const writable = await fileHandle.createWritable();
             await writable.write(content);
             await writable.close();
 
-            // Update file information
+            // 6) Refresh instance metadata and UI (same as your original)
             const file = await fileHandle.getFile();
 
             fileInstance.fileName = file.name;
             fileInstance.filePath = file.name;
             fileInstance.fileHandle = fileHandle;
-            fileInstance.lastModified = file.lastModified; // Store the timestamp
+            fileInstance.lastModified = file.lastModified;
             fileInstance.markAsSaved();
 
-            // Update document title with the new filename
+            // Update document title
             document.title = `${file.name} - ChromEd`;
-            
+
             // Update status bar with file type info
             const fileTypeElement = document.getElementById('file-type');
             if (fileTypeElement) {
@@ -214,6 +216,7 @@ class LocalFile extends CEFile {
             throw new Error(`Failed to save file: ${error.message}`);
         }
     }
+
 
     // Load file content (refresh from disk)
     async load() {
