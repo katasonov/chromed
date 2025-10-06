@@ -11,9 +11,12 @@
     <link rel="stylesheet" href="css/search-dialog-custom.css">
 	<link rel="stylesheet" href="css/tab-bar-nav.css">
     <link rel="stylesheet" href="css/tab_switcher_dialog.css">
+    <link rel="stylesheet" href="css/tab.css">
 
     <!-- TemporaryFile Save Dialog CSS -->
     <link rel="stylesheet" href="css/dialogs/temporaryfile-save-dialog.css">
+    <!-- Hint Dialog CSS -->
+    <link rel="stylesheet" href="css/dialogs/hint-dialog.css">
 		
     <style>
         * {
@@ -153,6 +156,30 @@
                 <button id="save-cancel-btn">Cancel</button>
             </div>
         </div>
+        <!-- Hint Dialog DOM -->
+        <div id="hint-dialog-overlay" role="dialog" aria-modal="true" aria-labelledby="hint-dialog-title">
+            <div class="hint-dialog" tabindex="-1">
+                <div class="hint-dialog-header">
+                    <div class="hint-icon" aria-hidden="true">💡</div>
+                    <h2 id="hint-dialog-title">ChromEd Quick Tips</h2>
+                    <button class="hint-close-btn" type="button" aria-label="Close tips" id="hint-close-btn">×</button>
+                </div>
+                <div class="hint-dialog-body">
+                    <div class="hint-message" id="hint-dialog-message"></div>
+                </div>
+                <div class="hint-dialog-footer">
+                    <div class="hint-controls">
+                        <button class="hint-nav-btn" type="button" id="hint-prev-btn">◀ Prev</button>
+                        <span class="hint-index" id="hint-index-label">1 / 1</span>
+                        <button class="hint-nav-btn" type="button" id="hint-next-btn">Next ▶</button>
+                    </div>
+                    <label class="hint-checkbox" for="hint-hide-checkbox">
+                        <input type="checkbox" id="hint-hide-checkbox">
+                        Don't show next time
+                    </label>
+                </div>
+            </div>
+        </div>
     <div class="context-menu-dropdown-template dropdown show" style="display:none;">
 
     </div>
@@ -178,7 +205,7 @@
         <div id="tab-title-template" style="display:none;">
             <span class="tab-icon" style="display:none;"></span>
             <span class="tab-title"></span>
-            <span class="tab-modified-indicator" style="display:none; color:rgb(5, 5, 5); font-size:14px; margin-left:2px;">•</span>
+            <span class="tab-modified-indicator">•</span>
             <span class="tab-close" data-tab-id="">×</span>
         </div>
         <!-- Toolbar -->
@@ -435,6 +462,7 @@
     <script src="js/dialogs/GDriveDialog.js"></script>
     <script src="js/GDriveFile.js"></script>
     <script src="js/TemporaryFileSaveDlg.js"></script>
+    <script src="js/HintDialog.js"></script>
     <script src="js/TemporaryFile.js"></script>
     <script src="js/FileFactory.js"></script>
     <script src="js/HistoryManager.js"></script>

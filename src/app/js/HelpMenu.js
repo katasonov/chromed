@@ -9,9 +9,10 @@ class HelpMenu extends ContextMenuDropdown {
         };
 
         // Construct menu items
-        let chromeEdHomeItem, redditChannelItem, xChannelItem, shortcutsSheetItem, githubItem, supportItem;
+        let chromeEdHomeItem, redditChannelItem, xChannelItem, shortcutsSheetItem, hintDialogItem, githubItem, supportItem;
         const menuItems = [
             (shortcutsSheetItem = new MenuItem('shortcuts-sheet', 'Keyboard Shortcuts', function() {})),
+            (hintDialogItem = new MenuItem('show-startup-hints', 'Show Startup Tips', function() {})),
             new MenuItemSeparator(),
             (chromeEdHomeItem = new MenuItem('chromeed-home', 'ChromeEd Home', function() {})),
             (redditChannelItem = new MenuItem('reddit-channel', 'Reddit Community', function() {})),
@@ -30,6 +31,7 @@ class HelpMenu extends ContextMenuDropdown {
         this.xChannelItem = xChannelItem;
         this.githubItem = githubItem;
         this.shortcutsSheetItem = shortcutsSheetItem;
+        this.hintDialogItem = hintDialogItem;
         this.supportItem = supportItem;
 
         // Assign actions
@@ -38,6 +40,21 @@ class HelpMenu extends ContextMenuDropdown {
         xChannelItem.action = wrapHandler(() => window.open('https://x.com/chromedapp'), this);
         githubItem.action = wrapHandler(() => window.open('https://github.com/katasonov/chromed/issues'), this);
         shortcutsSheetItem.action = wrapHandler(() => window.open('shortcuts.html'), this);
+        hintDialogItem.action = wrapHandler(() => {
+            if (window.HintDialog) {
+                window.HintDialog.loadSettings().then((settings) => {
+                    const dialog = new window.HintDialog({
+                        settings: { ...settings, dontShowAgain: false },
+                        showAll: true
+                    });
+                    if (dialog.isRenderable()) {
+                        dialog.show();
+                    }
+                });
+            } else {
+                alert('Hint dialog not available.');
+            }
+        }, this);
 
         // inside constructor after creating supportItem...
         supportItem.action = wrapHandler(() => {        
@@ -54,6 +71,7 @@ class HelpMenu extends ContextMenuDropdown {
         if (this.redditChannelItem) this.redditChannelItem.setEnabled(true);
         if (this.xChannelItem) this.xChannelItem.setEnabled(true);
         if (this.shortcutsSheetItem) this.shortcutsSheetItem.setEnabled(true);
+        if (this.hintDialogItem) this.hintDialogItem.setEnabled(true);
         if (this.supportItem) this.supportItem.setEnabled(true);
     }
 }

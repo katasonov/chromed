@@ -57,6 +57,15 @@ class NotepadPlusEditor {
         });
 
         this.notifyStateChanged(); // Update menu states
+
+        // Show nostalgic hint dialog on startup (if user wants it)
+        if (window.HintDialog && typeof window.HintDialog.showOnStartup === 'function') {
+            try {
+                await window.HintDialog.showOnStartup({ delay: 500 });
+            } catch (error) {
+                console.warn('[NotepadPlusEditor] Failed to show HintDialog:', error);
+            }
+        }
     }
     
     // Clean up resources

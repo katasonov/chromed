@@ -1,0 +1,282 @@
+/* hint-dialog.css - Styling for the startup hint dialog */
+
+#hint-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.35);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 1200;
+}
+
+#hint-dialog-overlay[data-visible="true"] {
+    display: flex;
+}
+
+.hint-dialog {
+    width: 420px;
+    max-width: 100%;
+    min-height: 320px;
+    max-height: 420px;
+    background: #ffffff;
+    color: #1f2328;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.hint-dialog-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: #f5f6f8;
+    border-bottom: 1px solid #e2e3e7;
+}
+
+.hint-dialog-header h2 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+    color: inherit;
+}
+
+.hint-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: #e2ebff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.hint-close-btn {
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: #4c5057;
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.15s ease;
+}
+
+.hint-close-btn:hover,
+.hint-close-btn:focus-visible {
+    background: rgba(0, 0, 0, 0.08);
+    outline: none;
+}
+
+.hint-dialog-body {
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    flex: 1 1 auto;
+    overflow-y: auto;
+}
+
+.hint-message {
+    margin-bottom: 16px;
+}
+
+.hint-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2328;
+    margin-bottom: 6px;
+}
+
+.hint-body {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.hint-message p {
+    margin: 0 0 12px;
+}
+
+.hint-message kbd {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    background: #f7f7f8;
+    font-size: 0.9em;
+    font-family: inherit;
+}
+
+.hint-dialog-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    justify-content: space-between;
+    background: #fafbfc;
+    border-top: 1px solid #e2e3e7;
+}
+
+.hint-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hint-nav-btn {
+    min-width: 92px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    border: 1px solid #bfc4cb;
+    background: #f7f7f8;
+    color: #1f2328;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.hint-nav-btn:hover,
+.hint-nav-btn:focus-visible {
+    background: #ebeff4;
+    border-color: #aeb4bc;
+    outline: none;
+}
+
+.hint-nav-btn:active {
+    background: #e1e4e9;
+}
+
+.hint-index {
+    font-size: 13px;
+    color: #5b616a;
+}
+
+.hint-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: #4c5057;
+    user-select: none;
+}
+
+.hint-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 480px) {
+    .hint-dialog {
+        min-height: auto;
+        max-height: 90vh;
+    }
+
+    .hint-dialog-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hint-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .hint-checkbox {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    #hint-dialog-overlay {
+        background: rgba(12, 12, 14, 0.65);
+    }
+
+    .hint-dialog {
+        background: #1f2329;
+        color: #e8e6e3;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.75);
+    }
+
+    .hint-dialog-header {
+        background: #262b33;
+        border-bottom: 1px solid #343943;
+    }
+
+    .hint-dialog-header h2 {
+        color: inherit;
+    }
+
+    .hint-icon {
+        background: #36425a;
+    }
+
+    .hint-close-btn {
+        color: #cfd3da;
+    }
+
+    .hint-close-btn:hover,
+    .hint-close-btn:focus-visible {
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    .hint-dialog-body {
+        color: #e8e6e3;
+    }
+
+    .hint-title {
+        color: #f2f0ed;
+    }
+
+    .hint-message kbd {
+        background: #2e333c;
+        border-color: #454a55;
+        color: #f4f2ef;
+    }
+
+    .hint-dialog-footer {
+        background: #232830;
+        border-top: 1px solid #343943;
+    }
+
+    .hint-nav-btn {
+        background: #2c313a;
+        border-color: #3a414d;
+        color: #f4f2ef;
+    }
+
+    .hint-nav-btn:hover,
+    .hint-nav-btn:focus-visible {
+        background: #353b46;
+        border-color: #4b5260;
+    }
+
+    .hint-nav-btn:active {
+        background: #2a3038;
+    }
+
+    .hint-index {
+        color: #adb2bc;
+    }
+
+    .hint-checkbox {
+        color: #cfd3da;
+    }
+
+    .hint-checkbox input[type="checkbox"] {
+        accent-color: #f0b849;
+    }
+}

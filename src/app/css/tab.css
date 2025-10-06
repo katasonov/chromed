@@ -1,0 +1,13 @@
+.tab-modified-indicator {
+    display:none; 
+    color:rgb(5, 5, 5); 
+    font-size:14px; 
+    margin-left:2px;
+}   
+
+
+@media (prefers-color-scheme: dark) {
+    .tab-modified-indicator {
+        color:rgb(255, 255, 255); 
+    }   
+}
