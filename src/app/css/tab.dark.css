@@ -1,0 +1,4 @@
+/* Dark mode styles for manual toggle: body.dark ... */
+body.dark .tab-modified-indicator {
+    color:rgb(255, 255, 255);
+}

@@ -1,0 +1,25 @@
+/* Dark mode styles for manual toggle: body.dark ... */
+body.dark .tab-switcher-dialog {
+  background: #232629;
+  color: #fafafa;
+  border: 1px solid #444;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.32);
+}
+body.dark .tab-switcher-dialog li {
+  color: #fafafa;
+}
+body.dark .tab-switcher-dialog li.selected {
+  background: #2a2d2e;
+  color: #8ab4f8;
+}
+body.dark .tab-switcher-dialog li.selected.active-tab {
+  background: #2a2d2e !important;
+  color: #8ab4f8 !important;
+}
+body.dark .tab-switcher-dialog li.active-tab {
+  color: #8ab4f8 !important;
+}
+body.dark .tab-switcher-dialog li:hover {
+  background: #181a1b;
+  color: #8ab4f8;
+}

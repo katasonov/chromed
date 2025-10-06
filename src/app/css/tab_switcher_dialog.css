@@ -60,30 +60,3 @@
   background: #e5f3ff;
   color: #316AC5;
 }
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .tab-switcher-dialog {
-    background: #232629;
-    color: #fafafa;
-    border: 1px solid #444;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.32);
-  }
-  .tab-switcher-dialog li {
-    color: #fafafa;
-  }
-  .tab-switcher-dialog li.selected {
-    background: #2a2d2e;
-    color: #8ab4f8;
-  }
-  .tab-switcher-dialog li.selected.active-tab {
-    background: #2a2d2e !important;
-    color: #8ab4f8 !important;
-  }
-  .tab-switcher-dialog li.active-tab {
-    color: #8ab4f8 !important;
-  }
-  .tab-switcher-dialog li:hover {
-    background: #181a1b;
-    color: #8ab4f8;
-  }
-}

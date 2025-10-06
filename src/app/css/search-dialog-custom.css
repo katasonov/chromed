@@ -277,53 +277,5 @@
     border: 1px solid rgba(200, 200, 0, 0.5);
 }
 
-/* Dark mode support for dialogs */
-@media (prefers-color-scheme: dark) {
-    .CodeMirror-dialog,
-    .search-dialog2 {
-        background-color: #232629 !important;
-        border-top: 1px solid #444 !important;
-        color: #fafafa !important;
-        box-shadow: 0 -1px 3px rgba(0,0,0,0.32) !important;
-    }
-    .search-dialog2 .search-close-btn {
-        color: #bbb;
-    }
-    .search-dialog2 .search-label {
-        color: #bbb;
-    }
-    .search-dialog2 .search-input,
-    .search-dialog2 .replace-input,
-    .CodeMirror-dialog input {
-        background-color: #181a1b;
-        color: #fafafa;
-        border: 1px solid #444;
-    }
-    .search-dialog2 .search-nav-btn {
-        background-color: #232629;
-        border: 1px solid #444;
-        color: #fafafa;
-    }
-    .search-dialog2 .search-nav-btn:hover {
-        background-color: #2a2d2e;
-        border-color: #666;
-    }
-    .search-dialog2 .search-nav-btn:active {
-        background-color: #181a1b;
-        border-color: #888;
-    }
-    .CodeMirror-search-match {
-        background-color: rgba(200, 200, 0, 0.2);
-        border: 1px solid rgba(200, 200, 0, 0.3);
-    }
-    .CodeMirror .searching {
-        background-color: rgba(200, 200, 0, 0.2);
-        border: 1px solid rgba(200, 200, 0, 0.3);
-    }
-    .CodeMirror .searching.active-match {
-        background-color: rgba(220, 130, 0, 0.3);
-        border: 1px solid rgba(220, 130, 0, 0.4);
-    }
-}
 
 

@@ -1,0 +1,48 @@
+/* Dark mode styles for manual toggle: body.dark ... */
+body.dark .CodeMirror {
+	background: #181a1b !important;
+	color: #e8e6e3 !important;
+}
+body.dark .CodeMirror-scroll {
+	background: #181a1b !important;
+}
+body.dark .CodeMirror-gutters {
+	background-color: #232629 !important;
+	border-right: 1px solid #444 !important;
+}
+body.dark .CodeMirror-linenumber {
+	color: #888 !important;
+}
+body.dark .CodeMirror-cursor {
+	border-left: 1px solid #8ab4f8 !important;
+}
+body.dark .CodeMirror-selected {
+	background: #2a2d2e !important;
+}
+body.dark .cm-searching {
+	background-color: #444 !important;
+}
+body.dark .cm-header, body.dark .cm-strong {
+	color: #8ab4f8 !important;
+}
+body.dark .cm-string, body.dark .cm-string-2 {
+	color: #a8ff60 !important;
+}
+body.dark .cm-comment {
+	color: #888 !important;
+}
+body.dark .cm-keyword {
+	color: #ff5370 !important;
+}
+body.dark .cm-number {
+	color: #f78c6c !important;
+}
+body.dark .cm-variable-2, body.dark .cm-variable-3 {
+	color: #c3e88d !important;
+}
+body.dark .cm-def {
+	color: #82aaff !important;
+}
+body.dark .cm-error, body.dark .cm-invalidchar {
+	color: #ff5370 !important;
+}

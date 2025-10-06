@@ -1,0 +1,89 @@
+/* Dark mode styles for manual toggle: body.dark ... */
+body.dark {
+    --border-color: #444;
+    --background-color: #232629;
+    --header-color: #35383a;
+    --highlight-color: #8ab4f8;
+    --text-color: #e8e6e3;
+    --hover-background: #35383a;
+    --selected-background: #232629;
+    --button-hover: #444;
+    --button-active: #35383a;
+}
+body.dark .gdrive-dialog .dialog-container,
+body.dark .gdrive-dialog .file-browser,
+body.dark .gdrive-dialog .breadcrumb-container,
+body.dark .gdrive-dialog .nav-button,
+body.dark .gdrive-dialog .modal-content,
+body.dark #new-folder-modal .modal-content {
+    background-color: #232629 !important;
+    color: #e8e6e3 !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.7);
+}
+body.dark .gdrive-dialog .dialog-header,
+body.dark .gdrive-dialog .modal-header,
+body.dark #new-folder-modal .modal-header {
+    background-color: #35383a !important;
+    color: #e8e6e3 !important;
+    border-bottom: 1px solid #444 !important;
+}
+body.dark .gdrive-dialog .sidebar,
+body.dark .gdrive-dialog .file-filter,
+body.dark .gdrive-dialog .dialog-footer,
+body.dark .gdrive-dialog .modal-footer,
+body.dark #new-folder-modal .modal-footer {
+    background-color: #232629 !important;
+    color: #e8e6e3 !important;
+    border-top: 1px solid #444 !important;
+}
+body.dark .gdrive-dialog .sidebar-item,
+body.dark .gdrive-dialog .file-item,
+body.dark .gdrive-dialog .breadcrumb-item {
+    color: #e8e6e3 !important;
+}
+body.dark .gdrive-dialog .sidebar-item.selected,
+body.dark .gdrive-dialog .file-item.selected,
+body.dark .gdrive-dialog .file-item.dbl-click-effect {
+    background-color: #35383a !important;
+    color: #8ab4f8 !important;
+}
+body.dark .gdrive-dialog .sidebar-item:hover,
+body.dark .gdrive-dialog .file-item:hover,
+body.dark .gdrive-dialog .nav-button:hover,
+body.dark .gdrive-dialog .secondary-button:hover {
+    background-color: #444 !important;
+}
+body.dark .gdrive-dialog button,
+body.dark #new-folder-modal button {
+    background-color: #35383a !important;
+    color: #e8e6e3 !important;
+    border: 1px solid #444 !important;
+}
+body.dark .gdrive-dialog .primary-button,
+body.dark #new-folder-modal .primary-button {
+    background-color: #8ab4f8 !important;
+    border-color: #8ab4f8 !important;
+    color: #232629 !important;
+}
+body.dark .gdrive-dialog .primary-button:hover,
+body.dark #new-folder-modal .primary-button:hover {
+    opacity: 0.9;
+}
+body.dark .gdrive-dialog .empty-folder-message {
+    color: #888 !important;
+}
+body.dark .gdrive-dialog .folder-item {
+    color: #8ab4f8 !important;
+}
+body.dark .gdrive-dialog .file-modified,
+body.dark .gdrive-dialog .file-type {
+    color: #aaa !important;
+}
+body.dark .gdrive-dialog .file-name-input,
+body.dark .gdrive-dialog .file-type-select,
+body.dark .gdrive-dialog .modal-body input,
+body.dark #new-folder-modal .modal-body input {
+    background-color: #232629 !important;
+    color: #e8e6e3 !important;
+    border: 1px solid #444 !important;
+}

@@ -1,0 +1,71 @@
+/* Dark mode styles for manual toggle: body.dark ... */
+body.dark .CodeMirror-dialog,
+body.dark .search-dialog2 {
+    background-color: #232629 !important;
+    border-top: 1px solid #444 !important;
+    color: #fafafa !important;
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.32) !important;
+}
+body.dark .search-dialog2 .search-close-btn {
+    color: #bbb;
+}
+body.dark .search-dialog2 .search-label {
+    color: #bbb;
+}
+body.dark .search-dialog2 .search-input,
+body.dark .search-dialog2 .replace-input,
+body.dark .CodeMirror-dialog input {
+    background-color: #181a1b;
+    color: #fafafa;
+    border: 1px solid #444;
+}
+body.dark .search-dialog2 .search-nav-btn {
+    background-color: #232629;
+    border: 1px solid #444;
+    color: #fafafa;
+}
+body.dark .search-dialog2 .search-nav-btn:hover {
+    background-color: #2a2d2e;
+    border-color: #666;
+}
+body.dark .search-dialog2 .search-nav-btn:active {
+    background-color: #181a1b;
+    border-color: #888;
+}
+body.dark .CodeMirror-search-match {
+    background-color: rgba(200, 200, 0, 0.2);
+    border: 1px solid rgba(200, 200, 0, 0.3);
+}
+body.dark .CodeMirror .searching {
+    background-color: rgba(200, 200, 0, 0.2);
+    border: 1px solid rgba(200, 200, 0, 0.3);
+}
+body.dark .CodeMirror .searching.active-match {
+    background-color: rgba(220, 130, 0, 0.3);
+    border: 1px solid rgba(220, 130, 0, 0.4);
+}
+body.dark .search-dialog2 .replace-btn,
+body.dark .search-dialog2 .replace-all-btn {
+    background-color: #35383a;
+    color: #fafafa;
+    border: 1px solid #444;
+}
+body.dark .search-dialog2 .replace-btn:hover,
+body.dark .search-dialog2 .replace-all-btn:hover {
+    background-color: #444;
+    border-color: #666;
+}
+body.dark .search-dialog2 .replace-btn:active,
+body.dark .search-dialog2 .replace-all-btn:active {
+    background-color: #181a1b;
+    border-color: #888;
+}
+body.dark .search-dialog2 .search-option {
+    color: #bbb;
+}
+body.dark .search-dialog2 .search-option input[type="checkbox"] {
+    accent-color: #8ab4f8;
+}
+body.dark .search-dialog2 .search-option label {
+    color: #bbb;
+}

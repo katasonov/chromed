@@ -1,0 +1,58 @@
+/* Dark mode styles for manual toggle: body.dark ... */
+body.dark .tab-bar {
+    background-color: #232629;
+    border-bottom: 1px solid #444;
+}
+body.dark .tab-bar-nav {
+    background: #232629;
+    box-shadow: -2px 0 2px rgba(0,0,0,0.12);
+}
+body.dark .tab {
+    background-color: #232629;
+    border: 1px solid #444;
+    color: #fafafa;
+}
+body.dark .tab.active {
+    background-color: #181a1b;
+    border-bottom: 1px solid #181a1b;
+    color: #fafafa;
+}
+body.dark .tab:not(.active):hover {
+    background-color: #2a2d2e;
+}
+body.dark .tab-title {
+    color: #fafafa;
+}
+body.dark .tab-close {
+    color: #bbb;
+}
+body.dark .tab-close:hover {
+    background-color: #ff4444;
+    color: #fff;
+}
+body.dark .tab-bar-nav-btn {
+    background: #232629;
+    border: 1px solid #444;
+    color: #fafafa;
+}
+body.dark .tab-bar-nav-btn:hover {
+    background: #2a2d2e;
+    border: 1px solid #316AC5;
+    color: #fafafa;
+}
+body.dark .tab-bar-nav-btn:active {
+    background: #181a1b;
+}
+body.dark .tab-bar-nav-dropdown {
+    background: #232629;
+    border: 1px solid #444;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.32);
+    color: #fafafa;
+}
+body.dark .tab-bar-nav-dropdown-item {
+    color: #fafafa;
+}
+body.dark .tab-bar-nav-dropdown-item:hover {
+    background: #2a2d2e;
+    color: #8ab4f8;
+}

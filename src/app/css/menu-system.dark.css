@@ -1,0 +1,90 @@
+/* Dark mode styles for manual toggle: body.dark ... */
+body.dark .status-bar {
+    background-color: #232629;
+    border-top: 1px solid #444;
+    color: #fafafa;
+}
+body.dark .status-bar .status-item {
+    color: #fafafa;
+}
+body.dark .status-bar .status-item:not(:first-child)::before {
+    border-left: 1px solid #444;
+}
+body.dark .toolbar {
+    background-color: #232629;
+    border-bottom: 1px solid #444;
+}
+body.dark .toolbar-button {
+    color: #fafafa;
+}
+body.dark .toolbar-button:hover {
+    background-color: #2a2d2e;
+    border: 1px solid #8ab4f8;
+}
+body.dark .toolbar-separator {
+    background: #444;
+}
+body.dark .CodeMirror-activeline-background,
+body.dark .cm-current-line {
+    background: transparent !important;
+    box-shadow: inset 0 0 0 1px #3a3f44;
+}
+body.dark .CodeMirror-activeline-gutter .CodeMirror-linenumber {
+    background: transparent !important;
+    box-shadow: inset 0 0 0 1px #3a3f44;
+}
+body.dark .menu-bar {
+    background-color: #232629;
+    border-bottom: 1px solid #444;
+    color: #fafafa;
+}
+body.dark .menu-item {
+    color: #e8e6e3;
+}
+body.dark .menu-item:hover,
+body.dark .menu-item.open {
+    background-color: #2a2d2e;
+}
+body.dark .dropdown {
+    background-color: #232629;
+    border: 1px solid #444;
+    color: #fafafa;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+}
+body.dark .dropdown-item {
+    color: #e8e6e3;
+}
+body.dark .dropdown-item:hover {
+    background-color: #2a2d2e;
+}
+body.dark .dropdown-item.disabled {
+    color: #666;
+}
+body.dark .dropdown hr {
+    border-top-color: #444;
+}
+body.dark .dropdown-item .shortcut {
+    color: #999;
+}
+body.dark .menu-item:focus {
+    outline: none !important;
+    background: transparent !important;
+    box-shadow: inset 0 0 0 1px #3a3f44;
+    border-radius: 2px;
+}
+body.dark .dropdown-item:focus,
+body.dark .dropdown-item.selected {
+    outline: none !important;
+    background: transparent !important;
+    box-shadow: inset 0 0 0 1px #3a3f44;
+    border-radius: 2px;
+}
+body.dark .dropdown-item:active {
+    background: #2a2d2e !important;
+    box-shadow: none;
+}
+body.dark .menu-item.active {
+    background: transparent !important;
+    border: 1px solid #3a3f44 !important;
+    padding: 3px 7px;
+}

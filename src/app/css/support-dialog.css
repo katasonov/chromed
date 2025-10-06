@@ -1,0 +1,84 @@
+/* Layout & container */
+.support-dialog {
+  border: none;
+  padding: 0;
+  width: min(520px, 92vw);
+  max-height: 85vh;
+  background: var(--dlg-bg, #fff);
+  color: var(--dlg-fg, #111);
+  box-shadow: 0 16px 40px rgba(0,0,0,.24);
+  border-radius: 14px;
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  margin: 0; z-index: 10000;
+}
+.support-dialog::backdrop { background: rgba(0,0,0,.42); }
+
+.sd-container { display: flex; flex-direction: column; }
+
+/* Header */
+.sd-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--dlg-border, #e6e6e6);
+}
+.sd-title { font-weight: 650; letter-spacing: .2px; }
+.sd-close { border:none; background:transparent; font-size:16px; cursor:pointer; border-radius:8px; padding:2px 6px; }
+.sd-close:hover { background: rgba(0,0,0,.06); }
+
+/* Body */
+.sd-body {
+  padding: 16px 18px 6px;
+  display:flex; flex-direction:column; gap: 14px;
+  text-align: center;                 /* friendlier alignment */
+}
+.sd-lead {
+  margin: 0;
+  line-height: 1.5;
+  opacity: .95;
+}
+
+/* Primary action block */
+.sd-primary { display:flex; flex-direction:column; gap:10px; align-items:center; }
+.sd-btn {
+  display:inline-block;
+  padding: 12px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  line-height: 1.2;
+}
+.sd-btn-primary {
+  border: 1px solid var(--dlg-border, #e6e6e6);
+  box-shadow: 0 2px 0 rgba(0,0,0,.06);
+  min-width: 220px;
+  font-weight: 600;
+}
+.sd-btn-primary:focus { outline: 2px solid Highlight; outline-offset: 2px; }
+.sd-btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(0,0,0,.10); }
+
+.sd-alt { font-size: .95em; opacity: .9; }
+.sd-microcopy { font-size: .82em; opacity: .7; }
+
+/* Benefits list */
+.sd-benefits {
+  margin: 6px 0 0; padding: 0;
+  list-style: none;
+  display: grid; gap: 6px;
+}
+.sd-benefits li { opacity: .95; }
+
+/* Signoff */
+.sd-signoff { margin: 2px 0 0; opacity: .75; }
+
+/* Footer */
+.sd-footer {
+  display:flex; justify-content:center;
+  padding: 12px 16px 16px;
+  border-top: 1px solid var(--dlg-border, #e6e6e6);
+}
+.sd-secondary {
+  border:1px solid var(--dlg-border,#e6e6e6);
+  background:transparent; padding:8px 12px; border-radius:10px; cursor:pointer;
+}
+.sd-secondary:hover { background: rgba(0,0,0,.04); }
+

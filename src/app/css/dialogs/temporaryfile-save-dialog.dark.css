@@ -1,0 +1,17 @@
+/* Dark mode styles for manual toggle: body.dark ... */
+body.dark #temporaryfile-save-dialog {
+  background: #232629;
+  color: #e8e6e3;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.7);
+}
+body.dark #temporaryfile-save-dialog .save-title {
+  color: #e8e6e3;
+}
+body.dark #temporaryfile-save-dialog button {
+  background: #35383a;
+  color: #e8e6e3;
+  border: 1px solid #444;
+}
+body.dark #temporaryfile-save-dialog button:hover {
+  background: #444;
+}
