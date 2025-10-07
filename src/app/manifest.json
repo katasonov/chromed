@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ChromEd - Multitab Text & Code Editor with Google Drive",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A fast, tabbed editor for text and code with Google Drive sync.",
   "permissions": [
     "storage",
