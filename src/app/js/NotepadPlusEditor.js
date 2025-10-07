@@ -66,6 +66,14 @@ class NotepadPlusEditor {
                 console.warn('[NotepadPlusEditor] Failed to show HintDialog:', error);
             }
         }
+
+        //Block codemirrors default Ctrl+Shift+F search
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'f') {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }, true); // Use capture phase to block before CodeMirror        
     }
     
     // Clean up resources
