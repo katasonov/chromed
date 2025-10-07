@@ -304,6 +304,7 @@ class LocalFile extends CEFile {
         }
     }
 
+
     // Create a new unsaved file
     static createNew(fileName) {
         return new LocalFile(fileName, '', null, null);

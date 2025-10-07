@@ -1,0 +1,19 @@
+/* status-message.dark.css - Dark theme for status messages */
+body.dark .status-message {
+    color: #f8f8f8;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.7);
+    border: 1px solid #222;
+}
+body.dark .status-message[data-status-type="success"] {
+    background: linear-gradient(90deg, #388e3c 0%, #43a047 100%);
+}
+body.dark .status-message[data-status-type="error"] {
+    background: linear-gradient(90deg, #c62828 0%, #e53935 100%);
+}
+body.dark .status-message[data-status-type="info"] {
+    background: linear-gradient(90deg, #1976d2 0%, #1e88e5 100%);
+}
+body.dark .status-message[data-status-type="warning"] {
+    background: linear-gradient(90deg, #ffa000 0%, #ffb300 100%);
+    color: #232323;
+}

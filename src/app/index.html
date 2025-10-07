@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="css/dialogs/hint-dialog.css">
     <link rel="stylesheet" href="css/dialogs/hint-dialog.dark.css">
 		
+        <!-- Status Message CSS -->
+        <link rel="stylesheet" href="css/status-message.css">
+        <link rel="stylesheet" href="css/status-message.dark.css">
     <style>
         * {
             margin: 0;
@@ -149,6 +152,8 @@
     </style>
 </head>
 <body>
+    <!-- Prototype div for status message -->
+    <div id="status-message" class="status-message"></div>
     <!-- Tab Switcher Dialog (hidden by default, used as a template) -->
     <div id="tab-switcher-dialog-template" class="tab-switcher-dialog" style="display:none;">
         <ul>
@@ -504,6 +509,7 @@
     <script src="js/EditorContextMenu.js"></script>
     <script src="js/Tab.js"></script>
 
+    <script src="js/StatusMessage.js"></script>
     <script src="js/NotepadPlusEditor.js"></script>
 
 </body>

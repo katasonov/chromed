@@ -38,6 +38,25 @@ class Tab {
         }
     }
 
+    getName() {
+        if (!this.file) {
+            console.error('Tab.getName: No file associated with this tab');
+            return '';
+        }
+        return this.file.getFileName();
+    }
+
+    async setName(name) {
+        if (!this.file) {
+            console.error('Tab.setName: No file associated with this tab');
+            return '';
+        }
+
+        this.file = await FileFactory.renameFile(this.file, name);
+        this.updateTitle();
+        this.dirty = true; // Mark tab as dirty to ensure it gets saved to storage
+    }
+
       // Returns true if there are real content changes to redo (ignores selection/cursor-only steps)
     hasContentToRedo() {
         if (!this.editor || typeof this.editor.getHistory !== 'function') return false;
@@ -93,6 +112,11 @@ class Tab {
     // Prepare editor history for storage, with optional size limiting
     prepareHistoryForStorage() {
         if (!this.editor) return null;
+        if (!this.file) {
+            console.error('Tab.prepareHistoryForStorage: No file associated with this tab');
+            return null;
+        }
+
         
         const content = this.editor.getValue();
         // Skip history for very large files (>1MB) to avoid performance issues
@@ -249,6 +273,7 @@ class Tab {
 
     // Set up editor event handlers
     setupEditorEvents() {
+   
 
         console.log(`[TAB::initializeEditor] Creating tab for file: ${this.file.getFileName()}, file modified: ${this.file.isModified()}`);
 
@@ -421,7 +446,7 @@ class Tab {
 
     // Close tab
     close() {
-        if (this.file.isModified()) {
+        if (this.file && this.file.isModified()) {
             const confirm = window.confirm(
                 `The file "${this.file.getFileName()}" has unsaved changes. Do you want to close it anyway?`
             );
@@ -538,7 +563,7 @@ class Tab {
     getDisplayName() {
         
         const typeIndicator = this.getFileTypeIndicator();
-        return typeIndicator + this.file.getFileName();
+        return typeIndicator + (this.file ? this.file.getFileName() : '');
     }
 
     // Get file type indicator

@@ -18,6 +18,17 @@ class TabContextMenu extends ContextMenuDropdown {
 
         const items = [];
         items.push(new MenuItem(
+            'tab-rename',
+            'Rename',
+            () => {
+                if (this.editor && typeof this.editor.renameTab === 'function') {
+                    this.editor.activeTabId = this.tabId;
+                    this.editor.renameTab();
+                    this.hide();
+                }
+            }
+        ));        
+        items.push(new MenuItem(
             'tab-save',
             'Save',
             () => {

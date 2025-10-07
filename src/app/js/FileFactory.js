@@ -68,11 +68,41 @@ class FileFactory {
 		if (result === 'local') {
             return LocalFile.saveAs(suggestedName || file.fileName, file.content);
 		} else if (result === 'gdrive') {
-
             return GDriveFile.saveAs(suggestedName || file.fileName, file.content);
 		} else {
 			// Cancelled
 			return file; // Return same instance
 		}
+    }
+
+    static async renameFile(file, newName) {
+        if (file instanceof GDriveFile) {
+            const newFile = await GDriveFile.rename(file, newName);
+            if (!newFile) {
+                console.warn("[FileFactory] renameFile: Rename cancelled or failed");
+                return file; // Return same instance if cancelled or error
+            }
+            return newFile;
+        } else if (file instanceof LocalFile) {
+
+            const newFile = await LocalFile.saveAs(newName, file.content);
+            if (!newFile) {
+                console.warn("[FileFactory] renameFile: Rename cancelled or failed");
+                return file; // Return same instance if cancelled or error
+            }
+            //TODO: show warning message that old file remains on disk
+            document.dispatchEvent(new CustomEvent('editor:status', {detail: {
+                message: `Renamed local file. Note: original file "${file.fileName}" remains on disk.`,
+                type: 'warning'
+            }}));
+            return newFile;
+        } else if (file instanceof TemporaryFile) {
+            // For TemporaryFile, just change the name
+            file.fileName = newName;
+            return file;
+        } else {
+            console.error("[FileFactory] renameFile: Unsupported file type", file);
+            return file; // Return same instance
+        }
     }
 }

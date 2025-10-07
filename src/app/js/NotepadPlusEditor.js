@@ -74,6 +74,13 @@ class NotepadPlusEditor {
                 e.stopPropagation();
             }
         }, true); // Use capture phase to block before CodeMirror        
+
+        // Listen for custom status events
+        document.addEventListener('editor:status', (e) => {
+            if (e && e.detail && e.detail.message) {
+                this.showStatus(e.detail.message, e.detail.type || 'info');
+            }
+        });
     }
     
     // Clean up resources
@@ -225,7 +232,7 @@ class NotepadPlusEditor {
     }
 
     // Centralized action handler - now used by both menu system and toolbar
-    handleAction(action) {
+    async handleAction(action) {
     // console.debug(`handleAction called with action: ${action}`);
         
         switch(action) {
@@ -239,11 +246,12 @@ class NotepadPlusEditor {
                 this.openGDriveFile();
                 break;
             case 'save':
-                console.debug(`Executing save action at ${new Date().toISOString()}`);
                 this.saveFile();
                 break;
+            case 'rename':
+                await this.renameTab();
+                break;
             case 'saveas':
-                console.debug(`Executing saveAs action at ${new Date().toISOString()}`);
                 this.saveAsFile();
                 break;
             case 'reload':
@@ -630,6 +638,19 @@ class NotepadPlusEditor {
         }
         event.target.value = ''; // Reset input
     }
+    
+    async renameTab() {
+        if (!this.activeTabId || !this.tabs.has(this.activeTabId)) {
+            console.warn(`[NotepadPlusEditor::renameTab] No active tab or tab not found`);
+            return;
+        }
+        const tab = this.tabs.get(this.activeTabId);
+        const newName = prompt("Enter new tab name:", tab.getName());
+        if (newName) {
+            await tab.setName(newName);
+            this.notifyStateChanged();
+        }
+    }
 
     // Save current file
     async saveFile() {
@@ -730,7 +751,7 @@ class NotepadPlusEditor {
 
     async onTabClose(tab) {
         const tabId = tab.getId();
-        console.log(`Closing tab: ${tabId} (${tab.getFile().getFileName()})`);
+        console.log(`Closing tab: ${tabId} (${tab.getName()})`);
         
         // Remove from collections
         this.tabs.delete(tabId);
@@ -740,7 +761,7 @@ class NotepadPlusEditor {
         await this.removeTabFromStorage(tabId);
         
         // Clean up counter if it's a "New X" file
-        const fileName = tab.getFile().getFileName();
+        const fileName = tab.getName();
         if (fileName.startsWith('New ')) {
             const counter = parseInt(fileName.split(' ')[1]);
             if (!isNaN(counter)) {
@@ -1135,44 +1156,10 @@ class NotepadPlusEditor {
         });
     }
 
-    // Status message system
+    // Status message system using StatusMessage class
     showStatus(message, type = 'info') {
-        let statusMsg = document.getElementById('status-message');
-        if (!statusMsg) {
-            statusMsg = document.createElement('div');
-            statusMsg.id = 'status-message';
-            statusMsg.style.cssText = `
-                position: fixed;
-                top: 10px;
-                right: 10px;
-                padding: 10px 15px;
-                border-radius: 4px;
-                color: white;
-                font-size: 12px;
-                z-index: 10000;
-                transition: all 0.3s ease;
-                max-width: 300px;
-            `;
-            document.body.appendChild(statusMsg);
-        }
-
-        const colors = {
-            success: '#4caf50',
-            error: '#f44336',
-            info: '#2196f3',
-            warning: '#ff9800'
-        };
-        
-        statusMsg.style.backgroundColor = colors[type] || colors.info;
-        statusMsg.textContent = message;
-        statusMsg.style.opacity = '1';
-        statusMsg.style.transform = 'translateX(0)';
-
-        clearTimeout(this.statusTimeout);
-        this.statusTimeout = setTimeout(() => {
-            statusMsg.style.opacity = '0';
-            statusMsg.style.transform = 'translateX(100%)';
-        }, 3000);
+        const status = new StatusMessage(message, type);
+        status.show();
     }
 
     // Public API methods for external access

@@ -1138,6 +1138,64 @@ class GDriveFile extends CEFile {
         }
     }
 
+    static async rename(file, newName) {
+        if (!(file instanceof GDriveFile)) {
+            console.error("[GDriveFile] rename: Not a GDriveFile instance", file);
+            return file;
+        }
+
+        // If the file hasn't been saved to Drive yet (no id), just rename locally.
+        if (!file.fileId) {
+            console.error("[GDriveFile] rename: No fileId, renaming locally only");
+            return await LocalFile.saveAs(newName, file.content);
+        }
+
+        // Saved file: patch name via Drive API and update instance in place.
+        try {
+            const accessToken = await GDriveFile.getValidAccessToken();
+            const resp = await fetch(
+                `https://www.googleapis.com/drive/v3/files/${file.fileId}`,
+                {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: newName })
+                }
+            );
+
+            if (!resp.ok) {
+                console.error('[GDriveFile] rename: API response not OK', await resp.text());
+                return await LocalFile.saveAs(newName, file.content);
+            }
+
+            // Update local fields/UI
+            file.fileName = newName;
+            file.filePath = newName;
+            file.invalidatePathCache(); // path contains the name; ensure tooltip refreshes
+            try {
+                document.title = `${newName} - ChromEd`;
+                const fileTypeElement = document.getElementById('file-type');
+                if (fileTypeElement) {
+                    const ext = (newName.split('.').pop() || 'txt').toUpperCase();
+                    fileTypeElement.textContent = `Google Drive: ${ext}`;
+                }
+            } catch (_) {}
+
+            return file;
+        } catch (err) {
+            console.error('[GDriveFile] rename error:', err);
+            // Fall back to local-only rename so the tab still updates,
+            // but keep fileId so a later save still targets the same file.
+            file.fileName = newName;
+            file.filePath = newName;
+            file.invalidatePathCache();
+            return file;
+        }
+    }
+
+
     // Invalidate cached path
     invalidatePathCache() {
         this.cachedPath = null;
