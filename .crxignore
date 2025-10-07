@@ -1,0 +1,43 @@
+# VCS / editors
+.git/
+.github/
+.vscode/
+.idea/
+.DS_Store
+
+# Node / tooling
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+scripts/
+build/
+dist/
+
+# Tests / docs / ops
+test/
+tests/
+coverage/
+README.md
+README
+CHANGELOG*
+CONTRIBUTING*
+*.spec.*
+*.test.*
+
+# Source maps / misc
+**/*.map
+**/*.sketch
+**/*.psd
+**/*.ai
+
+# Project-specific (adjust as needed)
+**/*.ts
+**/*.tsbuildinfo
+**/*.md
+**/*.yml
+**/*.yaml
+**/*.toml
+**/*.sh
+**/*.ps1
+**/*.bat

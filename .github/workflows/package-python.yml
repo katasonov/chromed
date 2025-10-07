@@ -1,0 +1,31 @@
+name: Package Chrome Extension (Python)
+
+on:
+  workflow_dispatch:
+    inputs:
+      ext_dir:
+        description: "Extension subfolder (leave blank if root)"
+        required: false
+        default: ""
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build-zip:
+    runs-on: ubuntu-latest
+    env:
+      EXT_DIR: ${{ github.event.inputs.ext_dir }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Python packager
+        run: python3 scripts/package.py
+        env:
+          EXT_DIR: ${{ env.EXT_DIR }}
+
+      - name: Upload ZIP artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: chrome-extension-zip
+          path: dist/*.zip
