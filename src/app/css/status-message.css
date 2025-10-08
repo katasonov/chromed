@@ -26,22 +26,3 @@
 .status-message[data-status-type="warning"] {
     background: #ff9800;
 }
-
-@media (prefers-color-scheme: dark) {
-    .status-message {
-        color: #fff;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-    }
-    .status-message[data-status-type="success"] {
-        background: #357a38;
-    }
-    .status-message[data-status-type="error"] {
-        background: #b71c1c;
-    }
-    .status-message[data-status-type="info"] {
-        background: #1565c0;
-    }
-    .status-message[data-status-type="warning"] {
-        background: #ffb300;
-    }
-}
