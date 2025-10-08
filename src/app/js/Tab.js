@@ -394,7 +394,7 @@ class Tab {
     }
 
     //Copy selected line/text
-    copy() {
+    copySelection() {
         if (this.active === false) return;
         
         if (this.editor.somethingSelected()) {
@@ -409,7 +409,7 @@ class Tab {
     }
     
     //Cut selected line/text
-    cut() {
+    cutSelection() {
         if (this.active === false) return;
         
         if (this.editor.somethingSelected()) {
@@ -956,16 +956,11 @@ class Tab {
             this.content.removeEventListener('contextmenu', this._onEditorContextMenu);
             this._onEditorContextMenu = (e) => {
                 if (e) e.preventDefault();
-                const menuItems = this._getEditorContextMenuItems();
-                if (!this._editorContextMenu) {
-                    this._editorContextMenu = new EditorContextMenu({menuItems: menuItems, onHide: () => {
-                        if (this._editorContextMenu) {
-                            this._editorContextMenu = null;
-                        }
-                    }});
-                } else {
-                    this._editorContextMenu.menuItems = menuItems;
-                }
+                this._editorContextMenu = new EditorContextMenu({parent: this, onHide: () => {
+                    if (this._editorContextMenu) {
+                        this._editorContextMenu = null;
+                    }
+                }});
                 const x = e.pageX || (e.touches && e.touches[0]?.pageX) || 0;
                 const y = e.pageY || (e.touches && e.touches[0]?.pageY) || 0;
                 this._editorContextMenu.show(x, y);
@@ -974,45 +969,69 @@ class Tab {
         }, 0);
     }
 
-    // Provide menu items and handlers for the editor context menu
-    _getEditorContextMenuItems() {
-        return [
-            {
-                itemName: 'Cut',
-                itemHint: 'Cut selected text',
-                handler: () => { this.cut(); },
-            },
-            {
-                itemName: 'Copy',
-                itemHint: 'Copy selected text',
-                handler: () => { this.copy(); },
-            },
-            {
-                itemName: 'Paste',
-                itemHint: 'Paste from clipboard',
-                handler: () => {
-                    if (navigator.clipboard && this.editor) {
-                        navigator.clipboard.readText().then(text => {
-                            this.editor.replaceSelection(text);
-                        });
-                    }
-                },
-            },
-            {
-                itemName: 'Delete',
-                itemHint: 'Delete selected text',
-                handler: () => {
-                    if (this.editor && this.editor.somethingSelected()) {
-                        this.editor.replaceSelection('');
-                    }
-                },
-            },
-            {
-                itemName: 'Select All',
-                itemHint: 'Select all text',
-                handler: () => { this.selectAll(); },
-            },
-        ];
+    paste() {
+        if (navigator.clipboard && this.editor) {
+            navigator.clipboard.readText().then(text => {
+                this.editor.replaceSelection(text);
+            });
+        }
     }
 
+    deleteSelection() {
+        if (this.editor && this.editor.somethingSelected()) {
+            this.editor.replaceSelection('');
+        }
+    }
+
+    async protectSelection() {
+        //TODO: show prompt dialog to set password
+        // Use ProtectedText to encrypt the selected content
+        // Replace selected text with encrypted text
+        if (this.editor && this.editor.somethingSelected()) {
+            const selectedText = this.editor.getSelection();
+            const password = window.prompt('Enter a password to protect the selected text:');
+            if (!password) return;
+
+            // Assume ProtectedText.encrypt(text, password) exists
+            const encrypted = await ProtectedText.encrypt(selectedText, password);
+            this.editor.replaceSelection(encrypted);
+        }
+    }
+
+    async unprotectSelection() {
+        if (this.editor && this.editor.somethingSelected()) {
+            const selectedText = this.editor.getSelection();
+            const password = window.prompt('Enter the password to unprotect the selected text:');
+            if (!password) return;
+            // Assume ProtectedText.decrypt(text, password) exists
+            try {
+                const decrypted = await ProtectedText.decrypt(selectedText, password);
+                // If around the selectedText there are ~ chars and are not included in selectedText, remove them after decrypting
+                const sel = this.editor.getSelection();
+                const cursor = this.editor.getCursor();
+                const from = this.editor.getCursor('from');
+                const to = this.editor.getCursor('to');
+                let before = '', after = '';
+                if (from.ch > 0) {
+                    before = this.editor.getLine(from.line).charAt(from.ch - 1);
+                }
+                const line = this.editor.getLine(to.line);
+                if (to.ch < line.length) {
+                    after = line.charAt(to.ch);
+                }
+                let decryptedText = decrypted;
+                // Remove leading ~ if present before selection
+                if (before === '~') {
+                    this.editor.replaceRange('', { line: from.line, ch: from.ch - 1 }, { line: from.line, ch: from.ch });
+                }
+                // Remove trailing ~ if present after selection
+                if (after === '~') {
+                    this.editor.replaceRange('', { line: to.line, ch: to.ch - 1 }, { line: to.line, ch: to.ch });
+                }
+                this.editor.replaceSelection(decrypted);
+            } catch (error) {
+                window.alert('Failed to unprotect text. Incorrect password or invalid protected text.');
+            }   
+        }
+    }
 }
