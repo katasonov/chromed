@@ -17,7 +17,7 @@ body.dark .CodeMirror-cursor {
 	border-left: 1px solid #8ab4f8 !important;
 }
 body.dark .CodeMirror-selected {
-	background: #2a2d2e !important;
+	background: #6a777c !important;
 }
 body.dark .cm-searching {
 	background-color: #444 !important;
