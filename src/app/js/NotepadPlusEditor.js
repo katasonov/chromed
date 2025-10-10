@@ -267,10 +267,10 @@ class NotepadPlusEditor {
                 this.redo();
                 break;
             case 'cut':
-                this.getActiveTab().cut();
+                this.getActiveTab().cutSelection();
                 break;
             case 'copy':
-                this.getActiveTab().copy();
+                this.getActiveTab().copySelection();
                 break;
             case 'paste':
                 this.paste();
