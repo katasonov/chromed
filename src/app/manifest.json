@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "ChromEd – Multi-Tab Notepad for Code & Notes in Chrome",
-  "version": "0.2.0",
-  "description": "Notepad++-like editor for text & code with Google Drive sync, syntax highlighting, and multi-tab support.",
+  "name": "ChromEd Notepad",
+  "version": "0.2.1",
+  "description": "Notepad and Code Editor for Chrome with Local File Storage and Google Drive Integration.",
   "permissions": [
     "storage",
     "identity",
