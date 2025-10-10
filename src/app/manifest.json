@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ChromEd Notepad",
-  "version": "0.2.1",
+  "version": "0.3",
   "description": "Notepad and Code Editor for Chrome with Local File Storage and Google Drive Integration.",
   "permissions": [
     "storage",
