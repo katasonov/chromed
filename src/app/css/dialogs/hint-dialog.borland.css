@@ -1,0 +1,83 @@
+/* Borland theme styles: body.borland ... */
+/* Classic Borland C/Turbo C IDE color scheme */
+body.borland #hint-dialog-overlay {
+    background: rgba(0, 0, 0, 0.7);
+}
+body.borland .hint-dialog {
+    background: #808080;
+    color: #000000;
+    border: 2px solid #FFFFFF;
+    outline: 2px solid #FFFFFF;
+    outline-offset: -4px;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+}
+body.borland .hint-dialog-header {
+    background: #13007F;
+    border-bottom: 1px solid #FFFFFF;
+}
+body.borland .hint-dialog-header h2 {
+    color: #FFFFFF;
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+}
+body.borland .hint-icon {
+    background: #00AA00;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    box-shadow: 2px 2px 0px #000000;
+}
+body.borland .hint-close-btn {
+    color: #FFFFFF;
+    background-color: #00AA00;
+    border: 2px solid #FFFFFF;
+    box-shadow: 2px 2px 0px #000000;
+}
+body.borland .hint-close-btn:hover,
+body.borland .hint-close-btn:focus-visible {
+    background: #FF0000;
+    color: #FFFFFF;
+}
+body.borland .hint-dialog-body {
+    color: #000000;
+}
+body.borland .hint-title {
+    color: #000000;
+    font-weight: bold;
+}
+body.borland .hint-message kbd {
+    background: #FFFFFF;
+    border-color: #000000;
+    color: #000000;
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+}
+body.borland .hint-dialog-footer {
+    background: #808080;
+    border-top: 1px solid #FFFFFF;
+}
+body.borland .hint-nav-btn {
+    background: #00AA00;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+    box-shadow: 2px 2px 0px #000000;
+}
+body.borland .hint-nav-btn:hover,
+body.borland .hint-nav-btn:focus-visible {
+    background: #00FF00;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+}
+body.borland .hint-nav-btn:active {
+    background: #008800;
+    box-shadow: 1px 1px 0px #000000;
+    transform: translate(1px, 1px);
+}
+body.borland .hint-index {
+    color: #000000;
+}
+body.borland .hint-checkbox {
+    color: #000000;
+}
+body.borland .hint-checkbox input[type="checkbox"] {
+    accent-color: #00AA00;
+}

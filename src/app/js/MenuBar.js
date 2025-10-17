@@ -54,6 +54,7 @@ class MenuBar {
         this.addMenu(new SearchMenu({editor: this.editor, id: 'search-menu', onLeftArrowPressed, onRightArrowPressed, onHide}));
         this.addMenu(new ViewMenu({editor: this.editor, id: 'view-menu', onLeftArrowPressed, onRightArrowPressed, onHide}));
         this.addMenu(new LanguagesMenu({editor: this.editor, id: 'languages-menu', onLeftArrowPressed, onRightArrowPressed, onHide}));
+        this.addMenu(new SettingsMenu({editor: this.editor, id: 'settings-menu', onLeftArrowPressed, onRightArrowPressed, onHide}));
         this.addMenu(new HelpMenu({editor: this.editor, id: 'help-menu', onLeftArrowPressed, onRightArrowPressed, onHide}));
     }
 
@@ -90,9 +91,10 @@ class MenuBar {
     createMenuButton(menu) {
         const btn = document.createElement('div');
         let label = menu.constructor.label || 'Menu';
+        let activeCharacterID = menu.constructor.activeCharacterID || 0;
         // Always underscore the first character visually
         const plainLabel = label.replace(/<.*?>/g, '');
-        btn.innerHTML = `<span style="text-decoration:underline">${plainLabel.charAt(0)}</span>${plainLabel.slice(1)}`;
+        btn.innerHTML = `${plainLabel.slice(0, activeCharacterID)}<span style="text-decoration:underline">${plainLabel.charAt(activeCharacterID)}</span>${plainLabel.slice(activeCharacterID + 1)}`;
         btn.className = `menu-item menu-${plainLabel.toLowerCase()}-item`;
 
         // Highlight selected menu item
@@ -212,6 +214,10 @@ class MenuBar {
 
     openSearchMenu() {
         this.openButton(this.buttons['search-menu']);
+    }
+
+    openSettingsMenu() {
+        this.openButton(this.buttons['settings-menu']);
     }
 }
 

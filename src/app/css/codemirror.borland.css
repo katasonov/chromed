@@ -1,0 +1,84 @@
+/* Borland theme styles: body.borland ... */
+/* Classic Borland C/Turbo C IDE color scheme */
+/* Based on authentic Borland IDE colors */
+body.borland .CodeMirror {
+	background: #13007F !important;
+	color: #FFFF00 !important;  /* Yellow for normal text */
+	font-family: "Consolas", "Courier New", "Lucida Console", monospace !important;
+	font-size: 14px !important;
+	line-height: 1.2 !important;
+	font-weight: 500 !important;
+}
+body.borland .CodeMirror-scroll {
+	background: #13007F !important;
+}
+body.borland .CodeMirror-gutters {
+	background-color: #13007F !important;
+	border-right: 1px solid #FFFFFF !important;
+	font-family: "Consolas", "Courier New", "Lucida Console", monospace !important;
+}
+body.borland .CodeMirror-linenumber {
+	color: #5555FF !important;  /* Light blue line numbers */
+	font-family: "Consolas", "Courier New", "Lucida Console", monospace !important;
+}
+body.borland .CodeMirror-cursor {
+	border-left: 2px solid #FFFF00 !important;
+}
+body.borland .CodeMirror-selected {
+	background: #008B8B !important;  /* Navy blue for selection */
+}
+body.borland .cm-searching {
+	background-color: #808080 !important;  /* Gray for search */
+	color: #000000 !important;
+}
+body.borland .cm-header, body.borland .cm-strong {
+	color: #FFFFFF !important;
+	font-weight: bold !important;
+}
+body.borland .cm-string, body.borland .cm-string-2 {
+	color: #00FFFF !important;  /* Cyan for strings */
+}
+body.borland .cm-comment {
+	color: #808080 !important;  /* Gray for comments */
+	font-style: italic !important;
+}
+body.borland .cm-keyword {
+	color: #FFFFFF !important;  /* White for keywords */
+	font-weight: bold !important;
+}
+body.borland .cm-number {
+	color: #FF00FF !important;  /* Magenta for numbers/constants */
+}
+body.borland .cm-variable-2, body.borland .cm-variable-3 {
+	color: #FFFF00 !important;  /* Yellow for variables */
+}
+body.borland .cm-def {
+	color: #FFFFFF !important;  /* White for definitions */
+	font-weight: bold !important;
+}
+body.borland .cm-error, body.borland .cm-invalidchar {
+	color: #FFFFFF !important;
+	background-color: #FF0000 !important;  /* White on red for errors */
+}
+body.borland .cm-builtin {
+	color: #00FF00 !important;  /* Green for builtins/preprocessor */
+}
+body.borland .cm-operator {
+	color: #FFFFFF !important;
+}
+body.borland .cm-tag {
+	color: #00FFFF !important;  /* Cyan for tags */
+}
+body.borland .cm-attribute {
+	color: #00FF00 !important;  /* Green for attributes */
+}
+body.borland .CodeMirror-activeline-background,
+body.borland .cm-current-line {
+    background: #000080 !important;  /* DarkCyan for active line */
+}
+body.borland .CodeMirror-activeline-gutter .CodeMirror-linenumber {
+    background: transparent !important;
+    box-shadow: inset 0 0 0 1px #FFFFFF;
+    color: #FFFF00 !important;  /* Yellow for active line number */
+}
+

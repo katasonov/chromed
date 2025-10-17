@@ -241,5 +241,8 @@ class ContextMenuDropdown {
     width() {
         return 220; // px, default width
     }
-     
+
+    static get activeCharacterID() {
+        return 0;
+    }     
 }

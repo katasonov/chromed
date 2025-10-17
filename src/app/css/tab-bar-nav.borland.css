@@ -1,0 +1,65 @@
+/* Borland theme styles: body.borland ... */
+/* Classic Borland C/Turbo C IDE color scheme */
+body.borland .tab-bar {
+    background-color: #13007F;
+    border-bottom: 1px solid #FFFFFF;
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+}
+body.borland .tab-bar-nav {
+    background: #13007F;
+    box-shadow: -2px 0 2px rgba(255, 255, 255, 0.2);
+}
+body.borland .tab {
+    background-color: #13007F;
+    border: 1px solid #FFFFFF;
+    color: #FFFF00;
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+    font-size: 12px;
+}
+body.borland .tab.active {
+    background-color: #008B8B;
+    border-bottom: 1px solid #FFFFFF;
+    color: #FFFFFF;
+}
+body.borland .tab:not(.active):hover {
+    background-color: #000080;
+}
+body.borland .tab-title {
+    color: #FFFF00;
+}
+body.borland .tab.active .tab-title {
+    color: #FFFFFF;
+}
+body.borland .tab-close {
+    color: #00FFFF;
+}
+body.borland .tab-close:hover {
+    background-color: #FF0000;
+    color: #FFFFFF;
+}
+body.borland .tab-bar-nav-btn {
+    background: #13007F;
+    border: 1px solid #FFFFFF;
+    color: #FFFF00;
+}
+body.borland .tab-bar-nav-btn:hover {
+    background: #008B8B;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+}
+body.borland .tab-bar-nav-btn:active {
+    background: #006666;
+}
+body.borland .tab-bar-nav-dropdown {
+    background: #13007F;
+    border: 1px solid #FFFFFF;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+    color: #FFFF00;
+}
+body.borland .tab-bar-nav-dropdown-item {
+    color: #FFFF00;
+}
+body.borland .tab-bar-nav-dropdown-item:hover {
+    background: #008B8B;
+    color: #FFFFFF;
+}

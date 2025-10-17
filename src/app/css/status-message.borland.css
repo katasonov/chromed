@@ -1,0 +1,27 @@
+/* Borland theme styles: body.borland ... */
+/* Classic Borland C/Turbo C IDE color scheme */
+body.borland .status-message {
+    background-color: #13007F;
+    border: 1px solid #FFFFFF;
+    color: #FFFF00;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+body.borland .status-message.success {
+    background-color: #13007F;
+    border-color: #00FF00;
+    color: #00FF00;
+}
+
+body.borland .status-message.error {
+    background-color: #13007F;
+    border-color: #FF0000;
+    color: #FFFFFF;
+    background-color: #FF0000;
+}
+
+body.borland .status-message.info {
+    background-color: #13007F;
+    border-color: #FFFFFF;
+    color: #FFFF00;
+}

@@ -1,0 +1,106 @@
+/* Borland theme styles: body.borland ... */
+/* Classic Borland C/Turbo C IDE color scheme */
+body.borland .status-bar {
+    background-color: #13007F;
+    border-top: 1px solid #FFFFFF;
+    color: #000000;
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+    font-size: 13px;
+}
+body.borland .status-bar .status-item {
+    color: #000000;
+    background-color: #808080;
+}
+body.borland .status-bar .status-item:not(:first-child)::before {
+    border-left: 1px solid #000000;
+}
+body.borland .toolbar {
+    background-color: #13007F;
+    border-bottom: 1px solid #FFFFFF;
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+}
+body.borland .toolbar-button {
+    color: #FFFF00;
+}
+body.borland .toolbar-button:hover {
+    background-color: #008B8B;
+    border: 1px solid #FFFFFF;
+}
+body.borland .toolbar-separator {
+    background: #FFFFFF;
+}
+body.borland .CodeMirror-activeline-background,
+body.borland .cm-current-line {
+    background: transparent !important;
+    box-shadow: inset 0 0 0 1px #727272;
+}
+body.borland .CodeMirror-activeline-gutter .CodeMirror-linenumber {
+    background: transparent !important;
+    box-shadow: inset 0 0 0 1px #FFFFFF;
+    color: #FFFF00 !important;
+}
+body.borland .menu-bar {
+    background-color: #13007F;
+    border-bottom: 1px solid #FFFFFF;
+    color: #FFFF00;
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+    font-size: 13px;
+    font-weight: 500;
+}
+body.borland .menu-item {
+    color: #FFFF00;
+}
+body.borland .menu-item:hover,
+body.borland .menu-item.open {
+    background-color: #008B8B;
+    color: #FFFFFF;
+}
+body.borland .dropdown {
+    background-color: #13007F;
+    border: 1px solid #FFFFFF;
+    color: #FFFF00;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+    font-size: 13px;
+}
+body.borland .dropdown-item {
+    color: #FFFF00;
+}
+body.borland .dropdown-item:hover {
+    background-color: #008B8B;
+    color: #FFFFFF;
+}
+body.borland .dropdown-item.disabled {
+    color: #808080;
+}
+body.borland .dropdown hr {
+    border-top-color: #FFFFFF;
+}
+body.borland .dropdown-item .shortcut {
+    color: #00FFFF;
+}
+body.borland .menu-item:focus {
+    outline: none !important;
+    background: #008B8B !important;
+    box-shadow: inset 0 0 0 1px #FFFFFF;
+    border-radius: 2px;
+    color: #FFFFFF;
+}
+body.borland .dropdown-item:focus,
+body.borland .dropdown-item.selected {
+    outline: none !important;
+    background: #008B8B !important;
+    box-shadow: inset 0 0 0 1px #FFFFFF;
+    border-radius: 2px;
+    color: #FFFFFF;
+}
+body.borland .dropdown-item:active {
+    background: #006666 !important;
+    box-shadow: none;
+}
+body.borland .menu-item.active {
+    background: #008B8B !important;
+    border: 1px solid #FFFFFF !important;
+    padding: 3px 7px;
+    color: #FFFFFF;
+}

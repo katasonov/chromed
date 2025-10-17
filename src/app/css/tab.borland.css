@@ -1,0 +1,5 @@
+/* Borland theme styles: body.borland ... */
+/* Classic Borland C/Turbo C IDE color scheme */
+body.borland .tab-modified-indicator {
+    color: #00FF00;
+}

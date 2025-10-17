@@ -136,6 +136,9 @@ class NotepadPlusEditor {
         this.shortcutManager.register('alt+l', () => {
             this.menuBar.openLanguagesMenu();
         }, 'custom');
+        this.shortcutManager.register('alt+t', () => {
+            this.menuBar.openSettingsMenu();
+        }, 'custom');
         this.shortcutManager.register('F1', () => {
             window.open('shortcuts.html', '_blank');
         }, 'custom');

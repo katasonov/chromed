@@ -1,0 +1,127 @@
+/* Borland theme styles: body.borland ... */
+/* Classic Borland C/Turbo C IDE color scheme */
+/* Authentic Borland IDE dialog style */
+
+body.borland .CodeMirror-dialog,
+body.borland .search-dialog2 {
+    background-color: #808080;
+    border: 2px solid #FFFFFF;
+    outline: 2px solid #FFFFFF;
+    outline-offset: -4px;
+    color: #000000;
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+    border-radius: 0;
+}
+
+body.borland .search-dialog2 h3 {
+    color: #FFFFFF;
+    background-color: #13007F;
+    border-bottom: 1px solid #FFFFFF;
+    padding: 8px 12px;
+    margin: 0;
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+body.borland .search-dialog2 .search-label {
+    color: #000000;
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+}
+
+body.borland .search-dialog2 .search-input,
+body.borland .search-dialog2 .replace-input,
+body.borland .CodeMirror-dialog input[type="text"] {
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    color: #000000;
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+    padding: 4px 6px;
+    border-radius: 0;
+}
+
+body.borland .search-dialog2 .search-input:focus,
+body.borland .search-dialog2 .replace-input:focus,
+body.borland .CodeMirror-dialog input[type="text"]:focus {
+    border-color: #000000;
+    background-color: #FFFFFF;
+    color: #000000;
+    outline: 1px dotted #000000;
+    outline-offset: -2px;
+}
+
+body.borland .search-dialog2 label {
+    color: #000000;
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+}
+
+body.borland .search-dialog2 .search-nav-btn,
+body.borland .search-dialog2 .replace-btn,
+body.borland .search-dialog2 .replace-all-btn,
+body.borland .search-dialog2 button {
+    background-color: #00AA00;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+    font-weight: bold;
+    padding: 6px 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 2px 2px 0px #000000;
+    border-radius: 0;
+}
+
+body.borland .search-dialog2 .search-nav-btn:hover,
+body.borland .search-dialog2 .replace-btn:hover,
+body.borland .search-dialog2 .replace-all-btn:hover,
+body.borland .search-dialog2 button:hover {
+    background-color: #00FF00;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+}
+
+body.borland .search-dialog2 .search-nav-btn:active,
+body.borland .search-dialog2 .replace-btn:active,
+body.borland .search-dialog2 .replace-all-btn:active,
+body.borland .search-dialog2 button:active {
+    background-color: #008800;
+    box-shadow: 1px 1px 0px #000000;
+    transform: translate(1px, 1px);
+}
+
+body.borland .search-dialog2 .search-nav-btn:focus,
+body.borland .search-dialog2 .replace-btn:focus,
+body.borland .search-dialog2 .replace-all-btn:focus,
+body.borland .search-dialog2 button:focus {
+    outline: 2px dotted #000000;
+    outline-offset: 2px;
+}
+
+body.borland .search-dialog2 .search-close-btn {
+    background-color: #00AA00;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+    font-weight: bold;
+    box-shadow: 2px 2px 0px #000000;
+    border-radius: 0;
+}
+
+body.borland .search-dialog2 .search-close-btn:hover {
+    background-color: #FF0000;
+    color: #FFFFFF;
+}
+
+body.borland .search-dialog2 .search-option {
+    color: #000000;
+    font-family: "Consolas", "Courier New", "Lucida Console", monospace;
+}
+
+body.borland .search-dialog2 .search-option input[type="checkbox"] {
+    accent-color: #00AA00;
+}
+
+body.borland .search-dialog2 .search-option label {
+    color: #000000;
+}
+
